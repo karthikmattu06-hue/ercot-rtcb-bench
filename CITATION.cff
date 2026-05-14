@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "ercot-rtcb-bench: An Open Benchmark for Battery Bidding in Post-RTC+B ERCOT"
+authors:
+  - family-names: Mattu
+    given-names: Karthik
+date-released: 2026-06-XX
+license: Apache-2.0
+repository-code: https://github.com/karthikmattu06-hue/ercot-rtcb-bench
+abstract: >
+  An open benchmark and reference bidding stack for ERCOT's Real-Time
+  Co-optimization Plus Batteries (RTC+B) market design. Includes versioned
+  datasets, reference implementations (perfect-foresight MIP, stochastic MILP,
+  SAC, decision-focused learning), and an evaluation harness for rolling-horizon
+  backtesting.
+keywords:
+  - energy storage
+  - battery bidding
+  - ERCOT
+  - electricity markets
+  - reinforcement learning
+  - optimization

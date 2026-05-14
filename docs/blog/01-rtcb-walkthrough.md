@@ -1,7 +1,7 @@
 # What RTC+B Actually Changed: A Visual Walkthrough of the 6-D Action Space
 
-> **Status**: Draft — Week 1. Polish and publish in Week 2 after dataset card stabilizes.
-> **Target**: 1,500–2,500 words, 4–6 figures.
+> **Published**: 2026-05-14  
+> **GitHub**: [karthikmattu06-hue/ercot-rtcb-bench](https://github.com/karthikmattu06-hue/ercot-rtcb-bench)
 
 ---
 
@@ -145,21 +145,24 @@ the 6-D action space with different levels of information and compute:
 
 **Perfect-foresight MIP**: Solves the full co-optimization with known future prices.
 Sets the theoretical upper bound on revenue. Not deployable, but useful for gap
-analysis.
+analysis. **Implemented.** Feb 1–7 2026 result: $178,442 / 7 days (100 MW / 400 MWh
+BESS at HB_HUBAVG, Gurobi 13).
 
-**Deterministic MILP**: Uses point price forecasts. Solvable in seconds. The
-"competent human operator with Excel" baseline.
+**Deterministic MILP (point forecast)**: Uses DAM clearing prices as a point forecast.
+Solvable in < 1 second. The "competent human operator with a spreadsheet" baseline.
+**Implemented.** Feb 1–7 result: $136,100 / 7 days — **76.3% capture** of perfect
+foresight. Run: `python scripts/smoke_milp.py --v01-dir path/to/v0.1`
 
 **Two-stage stochastic MILP**: Accounts for price uncertainty via scenario trees.
-More robust but slower. The industry-standard approach for battery bidding.
+More robust but slower. The industry-standard approach for battery bidding. Planned.
 
-**Constraint-aware SAC**: Deep RL (Soft Actor-Critic) with the SoC constraints
-encoded in the policy network. Learns the 6-D price-action mapping from data.
-The hypothesis here is that learned policies can capture the ASDC nonlinearities
-and AS product correlations that are hard to encode in a MILP objective.
+**Constraint-aware SAC**: Deep RL (Soft Actor-Critic) with SoC constraints encoded
+in the policy network. Learns the 6-D price-action mapping from data. The hypothesis
+is that learned policies can capture the ASDC nonlinearities and AS correlations that
+are hard to encode in a MILP objective. Planned (NeurIPS 2026 target).
 
 The dataset (`docs/dataset-card.md`) provides the observational foundation for all
-four approaches. Week 2 begins implementing the MIP baseline.
+four approaches.
 
 ---
 

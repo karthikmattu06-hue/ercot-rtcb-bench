@@ -87,14 +87,54 @@ AS clearing data is available through March 21, 2026 only (see Known Limitations
 | `timestamp_utc` | datetime[UTC] | — | Hourly interval start, UTC |
 | `settlement_point` | str | — | ERCOT settlement point |
 | `dam_spp` | float64 | $/MWh | DAM Settlement Point Price |
-| `dam_mcpc_regup` | float64 | $/MW | DAM REGUP MCPC |
-| `dam_mcpc_regdn` | float64 | $/MW | DAM REGDN MCPC |
-| `dam_mcpc_rrs` | float64 | $/MW | DAM RRS MCPC |
-| `dam_mcpc_ecrs` | float64 | $/MW | DAM ECRS MCPC |
-| `dam_mcpc_nspin` | float64 | $/MW | DAM Non-Spin MCPC |
+| `mcpc_regup` | float64 | $/MW | DAM REGUP MCPC |
+| `mcpc_regdn` | float64 | $/MW | DAM REGDN MCPC |
+| `mcpc_rrs` | float64 | $/MW | DAM RRS MCPC |
+| `mcpc_ecrs` | float64 | $/MW | DAM ECRS MCPC |
+| `mcpc_nspin_online` | float64 | $/MW | DAM Non-Spin Online MCPC (ADR 0004) |
+| `mcpc_nspin_offline` | float64 | $/MW | DAM Non-Spin Offline MCPC (ADR 0004) |
 | `is_post_rtcb` | bool | — | Always True in v0.1 |
 
+**Non-Spin split (ADR 0004)**: The DAM distinguishes Non-Spin Online and Offline
+as two priced products (NP4-188-CD). RT SCED publishes a single Non-Spin MCPC.
+Both DAM codes map to the `nspin` product family via `PRODUCT_FAMILY` in `schema.py`.
+
+**Migration note**: v0.1 Parquet files on disk use legacy `dam_mcpc_*` column names.
+The canonical schema (above) uses `mcpc_*`. `smoke_milp.py` handles this rename.
+
 **Source**: gridstatus `Ercot.get_dam_spp` (energy) and `ErcotAPI.get_as_prices` (AS).
+
+#### `asdc_hourly/` — per-hour ASDC breakpoints (added Week 2)
+
+| Column | Type | Unit | Description |
+|--------|------|------|-------------|
+| `operating_date` | date | — | Operating date (Central Time, ERCOT convention) |
+| `hour_ending` | int | — | Hour ending 1–24 (Central Time) |
+| `as_product` | str | — | AS product: regup, regdn, rrs, ecrs, nspin |
+| `segment_index` | int | — | Breakpoint index (0-based) |
+| `breakpoint_mw` | float64 | MW | Quantity at this breakpoint |
+| `breakpoint_price` | float64 | $/MW-h | ASDC shadow price at this breakpoint |
+| `as_plan_mw` | float64 | MW | Published AS plan quantity for this hour |
+| `source_filename` | str | — | Source CSV filename within np4-212-cd zip |
+
+**Source**: ERCOT EMILMIS `np4-212-cd` "DAM and SCED Ancillary Service Demand Curves"
+(Report Type ID 24893, public, daily). Fetched via `scripts/ingest_asdc_hourly.py`.
+
+#### `asdc_params.parquet` — AORDC mixture-normal parameters (added Week 2)
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `as_product` | str | AS product (5 values) |
+| `effective_date` | date | Effective date for this parameter set |
+| `mu`, `sigma` | float64 | Mixture-normal shape parameters (MW) |
+| `mix_weight_30min`, `mix_weight_60min` | float64 | Component weights (sum = 1) |
+| `voll` | float64 | Value of Lost Load ($/MWh) |
+| `voll_cap_offset` | float64 | VOLL cap offset ($/MWh, per NPRR 1268) |
+| `min_step_floor` | float64 | ASDC price floor ($/MW-h, per NPRR 1268) |
+| `source_url`, `source_doc_revision` | str | Provenance |
+
+**Source**: ERCOT "AORDC Regression Fit Parameters for RTC+B Go-Live" xlsx
+(published 2025-09-30, RTCBTF Key Documents page). Parsed via `scripts/ingest_asdc_params.py`.
 
 #### `system_conditions/` — 5-minute system-level observables
 
@@ -218,13 +258,29 @@ This is the complete observable AS action space for a BESS under RTC+B.
    subtle distributional shift mid-dataset. The `is_post_mip_tighten` flag in
    `rtcb.py` marks this boundary.
 
-7. **No ASDC parameters**: The ERCOT Ancillary Service Demand Curve parameters
-   are not included in v0.1 due to uncertainty about the correct data product
-   and API endpoint. This is a priority addition for v1.0.
-
-8. **Small negative MCPC values**: Three REGDN intervals on December 30-31 have
+7. **Small negative MCPC values**: Three REGDN intervals on December 30-31 have
    MCPC values of -$0.01 (rounding artifact from the pricing engine). These are
    treated as effectively zero and do not fail validation (tolerance = -$0.05/MW).
+
+---
+
+## Baselines
+
+The repository ships two LP baselines (Week 2 addition):
+
+| Baseline | Module | Description |
+|----------|--------|-------------|
+| **Perfect foresight** | `methods/perfect_foresight.py` | Knows all future RT prices exactly; upper bound on achievable revenue |
+| **Point forecast** | `methods/point_forecast.py` | Optimizes with DAM prices as forecast; settles at RT prices |
+
+**Feb 1–7, 2026 smoke run** (100 MW / 400 MWh BESS at HB_HUBAVG, Gurobi 13):
+
+| Baseline | Revenue (7 days) | Capture |
+|----------|-----------------|---------|
+| Perfect foresight | $178,442 | 100% (upper bound) |
+| Point forecast (DAM) | $136,100 | 76.3% |
+
+Run with: `python scripts/smoke_milp.py --v01-dir path/to/v0.1`
 
 ---
 

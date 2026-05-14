@@ -1,8 +1,8 @@
-"""Tests for canonical Pydantic schemas."""
+"""Tests for canonical Pydantic schemas (post-ADR-0002/0003/0004 migration)."""
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 import pytest
 
@@ -11,6 +11,7 @@ from ercot_rtcb_bench.data.schema import (
     ASProduct,
     ASDCParameters,
     ASDCSegment,
+    Awards,
     BESSMetadata,
     DAMPrices,
     RTPrices,
@@ -23,64 +24,55 @@ def utc(year, month, day, hour=0, minute=0):
     return datetime(year, month, day, hour, minute, tzinfo=timezone.utc)
 
 
+def _rt_prices(**kwargs):
+    defaults = dict(
+        timestamp_utc=utc(2026, 1, 15, 12, 0),
+        settlement_point="HB_HUBAVG",
+        settlement_point_type=SettlementPointType.TRADING_HUB,
+        lmp=45.0,
+        mcpc_regup=1.5,
+        mcpc_regdn=0.7,
+        mcpc_rrs=0.3,
+        mcpc_ecrs=0.2,
+        mcpc_nspin=1.0,
+    )
+    defaults.update(kwargs)
+    return RTPrices(**defaults)
+
+
 class TestRTPrices:
-    def test_valid(self):
-        r = RTPrices(
-            timestamp_utc=utc(2026, 1, 15, 12, 5),
-            settlement_point="HB_HUBAVG",
-            settlement_point_type=SettlementPointType.TRADING_HUB,
-            lmp=45.23,
-        )
-        assert r.lmp == 45.23
+    def test_valid_with_all_mcpcs(self):
+        r = _rt_prices()
+        assert r.lmp == 45.0
+        assert r.mcpc_rrs == 0.3
+        assert r.mcpc_nspin == 1.0
 
     def test_lmp_at_offer_cap(self):
-        r = RTPrices(
-            timestamp_utc=utc(2026, 1, 15, 12, 0),
-            settlement_point="HB_NORTH",
-            settlement_point_type=SettlementPointType.TRADING_HUB,
-            lmp=5000.0,
-        )
+        r = _rt_prices(lmp=5000.0)
         assert r.lmp == 5000.0
 
     def test_negative_lmp_within_bounds(self):
-        r = RTPrices(
-            timestamp_utc=utc(2026, 2, 1, 3, 0),
-            settlement_point="HB_WEST",
-            settlement_point_type=SettlementPointType.TRADING_HUB,
-            lmp=-100.0,
-        )
+        r = _rt_prices(lmp=-100.0)
         assert r.lmp == -100.0
 
     def test_lmp_above_cap_rejected(self):
         with pytest.raises(Exception):
-            RTPrices(
-                timestamp_utc=utc(2026, 1, 15, 12, 0),
-                settlement_point="HB_HUBAVG",
-                settlement_point_type=SettlementPointType.TRADING_HUB,
-                lmp=5001.0,
-            )
+            _rt_prices(lmp=5001.0)
 
     def test_non_utc_timestamp_rejected(self):
-        from datetime import timezone as tz
         import pytz
         cst = pytz.timezone("US/Central")
         ts = cst.localize(datetime(2026, 1, 15, 6, 0))
         with pytest.raises(Exception):
-            RTPrices(
-                timestamp_utc=ts,
-                settlement_point="HB_HUBAVG",
-                settlement_point_type=SettlementPointType.TRADING_HUB,
-                lmp=45.0,
-            )
+            _rt_prices(timestamp_utc=ts)
 
     def test_non_five_min_aligned_rejected(self):
         with pytest.raises(Exception):
-            RTPrices(
-                timestamp_utc=utc(2026, 1, 15, 12, 3),  # :03 not aligned
-                settlement_point="HB_HUBAVG",
-                settlement_point_type=SettlementPointType.TRADING_HUB,
-                lmp=45.0,
-            )
+            _rt_prices(timestamp_utc=utc(2026, 1, 15, 12, 3))
+
+    def test_negative_mcpc_rejected(self):
+        with pytest.raises(Exception):
+            _rt_prices(mcpc_rrs=-0.1)
 
 
 class TestASClearing:
@@ -117,25 +109,28 @@ class TestDAMPrices:
                 timestamp_utc=utc(2026, 1, 15, 12, 30),
                 settlement_point="HB_HUBAVG",
                 dam_spp=45.0,
-                dam_mcpc_regup=1.0,
-                dam_mcpc_regdn=0.5,
-                dam_mcpc_rrs=0.2,
-                dam_mcpc_ecrs=0.1,
-                dam_mcpc_nspin=0.8,
+                mcpc_regup=1.0,
+                mcpc_regdn=0.5,
+                mcpc_rrs=0.2,
+                mcpc_ecrs=0.1,
+                mcpc_nspin_online=0.8,
+                mcpc_nspin_offline=0.6,
             )
 
-    def test_valid(self):
+    def test_valid_with_nspin_split(self):
         r = DAMPrices(
             timestamp_utc=utc(2026, 1, 15, 12, 0),
             settlement_point="HB_HUBAVG",
             dam_spp=48.0,
-            dam_mcpc_regup=1.5,
-            dam_mcpc_regdn=0.7,
-            dam_mcpc_rrs=0.3,
-            dam_mcpc_ecrs=0.2,
-            dam_mcpc_nspin=1.0,
+            mcpc_regup=1.5,
+            mcpc_regdn=0.7,
+            mcpc_rrs=0.3,
+            mcpc_ecrs=0.2,
+            mcpc_nspin_online=1.0,
+            mcpc_nspin_offline=0.5,
         )
-        assert r.dam_spp == 48.0
+        assert r.mcpc_nspin_online == 1.0
+        assert r.mcpc_nspin_offline == 0.5
 
 
 class TestSystemConditions:
@@ -162,7 +157,7 @@ class TestSystemConditions:
                 wind_forecast_mw=5200.0,
                 solar_actual_mw=3000.0,
                 solar_forecast_mw=3100.0,
-                net_load_mw=99999.0,  # wrong
+                net_load_mw=99999.0,
             )
 
 
@@ -204,19 +199,32 @@ class TestBESSMetadata:
 class TestASDCParameters:
     def test_valid(self):
         a = ASDCParameters(
-            timestamp_utc=utc(2026, 1, 15, 12, 0),
             as_product=ASProduct.REGUP,
-            segments=[
-                ASDCSegment(quantity_mw=1000.0, price_per_mw=5.0),
-                ASDCSegment(quantity_mw=2000.0, price_per_mw=2.0),
-            ],
+            effective_date=date(2025, 12, 5),
+            mu=100.0,
+            sigma=50.0,
+            mix_weight_30min=0.4,
+            mix_weight_60min=0.6,
+            voll=5000.0,
+            voll_cap_offset=250.0,
+            min_step_floor=0.25,
+            source_url="https://ercot.com",
+            source_doc_revision="v1",
         )
-        assert len(a.segments) == 2
+        assert a.as_product == ASProduct.REGUP
 
-    def test_empty_segments_rejected(self):
+    def test_weights_must_sum_to_one(self):
         with pytest.raises(Exception):
             ASDCParameters(
-                timestamp_utc=utc(2026, 1, 15, 12, 0),
-                as_product=ASProduct.ECRS,
-                segments=[],
+                as_product=ASProduct.REGUP,
+                effective_date=date(2025, 12, 5),
+                mu=100.0,
+                sigma=50.0,
+                mix_weight_30min=0.7,
+                mix_weight_60min=0.6,  # 1.3 ≠ 1.0
+                voll=5000.0,
+                voll_cap_offset=250.0,
+                min_step_floor=0.25,
+                source_url="https://ercot.com",
+                source_doc_revision="v1",
             )

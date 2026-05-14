@@ -1,0 +1,3839 @@
+{
+  "version": "v0.1",
+  "hybridbid_dir": "/Users/karthikmattu/hybridbid",
+  "raw": {
+    "rt_lmp_5min": {
+      "exists": true,
+      "file_count": 2192,
+      "date_first": "2020-01-01",
+      "date_last": "2025-12-31",
+      "size_mb": 30.5,
+      "schema_sample": {
+        "2020-01-01": {
+          "shape": [
+            290,
+            7
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "SCED Timestamp",
+            "Market",
+            "Location",
+            "Location Type",
+            "LMP"
+          ]
+        },
+        "2025-12-31": {
+          "shape": [
+            297,
+            7
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "SCED Timestamp",
+            "Market",
+            "Location",
+            "Location Type",
+            "LMP"
+          ]
+        }
+      },
+      "missing_dates": [],
+      "missing_count": 0
+    },
+    "dam_as": {
+      "exists": true,
+      "file_count": 2274,
+      "date_first": "2020-01-01",
+      "date_last": "2026-03-23",
+      "size_mb": 14.8,
+      "schema_sample": {
+        "2020-01-01": {
+          "shape": [
+            24,
+            8
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "Market",
+            "Non-Spinning Reserves",
+            "Regulation Down",
+            "Regulation Up",
+            "Responsive Reserves",
+            "ERCOT Contingency Reserve Service"
+          ]
+        },
+        "2026-03-23": {
+          "shape": [
+            24,
+            8
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "Market",
+            "Non-Spinning Reserves",
+            "Regulation Down",
+            "Regulation Up",
+            "Responsive Reserves",
+            "ERCOT Contingency Reserve Service"
+          ]
+        }
+      },
+      "missing_dates": [],
+      "missing_count": 0
+    },
+    "dam_spp": {
+      "exists": true,
+      "file_count": 88,
+      "date_first": "2020",
+      "date_last": "2026",
+      "size_mb": 2.1,
+      "schema_sample": {
+        "2020": {
+          "shape": [
+            8784,
+            7
+          ],
+          "columns": [
+            "Time",
+            "Interval Start",
+            "Interval End",
+            "Location",
+            "Location Type",
+            "Market",
+            "SPP"
+          ]
+        },
+        "2026": {
+          "shape": [
+            1751,
+            7
+          ],
+          "columns": [
+            "Time",
+            "Interval Start",
+            "Interval End",
+            "Location",
+            "Location Type",
+            "Market",
+            "SPP"
+          ]
+        }
+      },
+      "missing_dates": [],
+      "missing_count": 0
+    },
+    "sced_mcpc": {
+      "exists": true,
+      "file_count": 107,
+      "date_first": "2025-12-05",
+      "date_last": "2026-03-21",
+      "size_mb": 0.9,
+      "schema_sample": {
+        "2025-12-05": {
+          "shape": [
+            1440,
+            4
+          ],
+          "columns": [
+            "sced_timestamp",
+            "repeated_hour_flag",
+            "as_type",
+            "mcpc"
+          ]
+        },
+        "2026-03-21": {
+          "shape": [
+            1290,
+            4
+          ],
+          "columns": [
+            "sced_timestamp",
+            "repeated_hour_flag",
+            "as_type",
+            "mcpc"
+          ]
+        }
+      },
+      "missing_dates": [],
+      "missing_count": 0
+    },
+    "load_actual": {
+      "exists": true,
+      "file_count": 7,
+      "date_first": "2020",
+      "date_last": "2026",
+      "size_mb": 5.5,
+      "schema_sample": {
+        "2020": {
+          "shape": [
+            8784,
+            11
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "Coast",
+            "East",
+            "Far West",
+            "North",
+            "North Central",
+            "South",
+            "South Central",
+            "West",
+            "ERCOT"
+          ]
+        },
+        "2026": {
+          "shape": [
+            1416,
+            11
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "Coast",
+            "East",
+            "Far West",
+            "North",
+            "North Central",
+            "South",
+            "South Central",
+            "West",
+            "ERCOT"
+          ]
+        }
+      },
+      "missing_dates": [
+        "2020-01-02",
+        "2020-01-03",
+        "2020-01-04",
+        "2020-01-05",
+        "2020-01-06",
+        "2020-01-07",
+        "2020-01-08",
+        "2020-01-09",
+        "2020-01-10",
+        "2020-01-11",
+        "2020-01-12",
+        "2020-01-13",
+        "2020-01-14",
+        "2020-01-15",
+        "2020-01-16",
+        "2020-01-17",
+        "2020-01-18",
+        "2020-01-19",
+        "2020-01-20",
+        "2020-01-21"
+      ],
+      "missing_count": 2186
+    },
+    "load_forecast": {
+      "exists": true,
+      "file_count": 2246,
+      "date_first": "2020-01-01",
+      "date_last": "2026-03-23",
+      "size_mb": 584.4,
+      "schema_sample": {
+        "2020-01-01": {
+          "shape": [
+            4608,
+            14
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "Publish Time",
+            "Model",
+            "Coast",
+            "East",
+            "Far West",
+            "North",
+            "North Central",
+            "South Central",
+            "Southern",
+            "West",
+            "System Total",
+            "In Use Flag"
+          ]
+        },
+        "2026-03-23": {
+          "shape": [
+            4608,
+            14
+          ],
+          "columns": [
+            "Interval Start",
+            "Interval End",
+            "Publish Time",
+            "Model",
+            "Coast",
+            "East",
+            "Far West",
+            "North",
+            "North Central",
+            "South Central",
+            "Southern",
+            "West",
+            "System Total",
+            "In Use Flag"
+          ]
+        }
+      },
+      "missing_dates": [
+        "2025-01-31",
+        "2025-02-01",
+        "2025-02-02",
+        "2025-02-03",
+        "2025-04-08",
+        "2025-04-09",
+        "2025-04-10",
+        "2025-04-11",
+        "2025-06-14",
+        "2025-06-15",
+        "2025-06-16",
+        "2025-06-17",
+        "2025-08-20",
+        "2025-08-21",
+        "2025-08-22",
+        "2025-08-23",
+        "2025-10-26",
+        "2025-10-27",
+        "2025-10-28",
+        "2025-10-29"
+      ],
+      "missing_count": 28
+    },
+    "wind": {
+      "exists": true,
+      "file_count": 0
+    },
+    "solar": {
+      "exists": true,
+      "file_count": 0
+    }
+  },
+  "processed": {
+    "as_prices": {
+      "exists": true,
+      "file_count": 76,
+      "size_mb": 7.2,
+      "months": [
+        {
+          "month": "2020-01",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.75
+        },
+        {
+          "month": "2020-02",
+          "rows": 8352,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-03",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-04",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-05",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-06",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-07",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-08",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-09",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-10",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-11",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2020-12",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-01",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.75
+        },
+        {
+          "month": "2021-02",
+          "rows": 8064,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-03",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-04",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-05",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-06",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-07",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-08",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-09",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-10",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-11",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2021-12",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-01",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.75
+        },
+        {
+          "month": "2022-02",
+          "rows": 8064,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-03",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-04",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-05",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-06",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-07",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-08",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-09",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-10",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-11",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2022-12",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-01",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.75
+        },
+        {
+          "month": "2023-02",
+          "rows": 8064,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-03",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-04",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-05",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-06",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 48.24
+        },
+        {
+          "month": "2023-07",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-08",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-09",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-10",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-11",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2023-12",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-01",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.82
+        },
+        {
+          "month": "2024-02",
+          "rows": 8352,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-03",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-04",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-05",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-06",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-07",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-08",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-09",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-10",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-11",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2024-12",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-01",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.82
+        },
+        {
+          "month": "2025-02",
+          "rows": 8064,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-03",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-04",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-05",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-06",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-07",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-08",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-09",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-10",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-11",
+          "rows": 8640,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 45.45
+        },
+        {
+          "month": "2025-12",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 7704,
+          "null_pct": 6.24
+        },
+        {
+          "month": "2026-01",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8928,
+          "null_pct": 0.78
+        },
+        {
+          "month": "2026-02",
+          "rows": 8064,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8064,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2026-03",
+          "rows": 8928,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8928,
+          "null_pct": 16.09
+        },
+        {
+          "month": "2026-04",
+          "rows": 4320,
+          "columns": [
+            "dam_as_regup",
+            "dam_as_regdn",
+            "dam_as_rrs",
+            "dam_as_ecrs",
+            "dam_as_nsrs",
+            "rt_mcpc_regup",
+            "rt_mcpc_regdn",
+            "rt_mcpc_rrs",
+            "rt_mcpc_ecrs",
+            "rt_mcpc_nsrs",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 4320,
+          "null_pct": 0.09
+        }
+      ]
+    },
+    "energy_prices": {
+      "exists": true,
+      "file_count": 76,
+      "size_mb": 8.3,
+      "months": [
+        {
+          "month": "2020-01",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2020-02",
+          "rows": 8352,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-03",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-04",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-05",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-06",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-07",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-08",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-09",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-10",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-11",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-12",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2021-01",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.55
+        },
+        {
+          "month": "2021-02",
+          "rows": 8064,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-03",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.02
+        },
+        {
+          "month": "2021-04",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2021-05",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-06",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-07",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.03
+        },
+        {
+          "month": "2021-08",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-09",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-10",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-11",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2021-12",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-01",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2022-02",
+          "rows": 8064,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2022-03",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-04",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-05",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-06",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-07",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-08",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-09",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.05
+        },
+        {
+          "month": "2022-10",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-11",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-12",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-01",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2023-02",
+          "rows": 8064,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-03",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-04",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.02
+        },
+        {
+          "month": "2023-05",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-06",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-07",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2023-08",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-09",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-10",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2023-11",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-12",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-01",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2024-02",
+          "rows": 8352,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-03",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-04",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.03
+        },
+        {
+          "month": "2024-05",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-06",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-07",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2024-08",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-09",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-10",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-11",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-12",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-01",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2025-02",
+          "rows": 8064,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2025-03",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-04",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-05",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-06",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-07",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-08",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2025-09",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-10",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.04
+        },
+        {
+          "month": "2025-11",
+          "rows": 8640,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-12",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 7704,
+          "null_pct": 0.01
+        },
+        {
+          "month": "2026-01",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8928,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2026-02",
+          "rows": 8064,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8064,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2026-03",
+          "rows": 8928,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8928,
+          "null_pct": 0.03
+        },
+        {
+          "month": "2026-04",
+          "rows": 4320,
+          "columns": [
+            "rt_lmp",
+            "dam_spp",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 4320,
+          "null_pct": 0.0
+        }
+      ]
+    },
+    "system_conditions": {
+      "exists": true,
+      "file_count": 76,
+      "size_mb": 9.2,
+      "months": [
+        {
+          "month": "2020-01",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2020-02",
+          "rows": 8352,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-03",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-04",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-05",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-06",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-07",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-08",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-09",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-10",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-11",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2020-12",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-01",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2021-02",
+          "rows": 8064,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-03",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-04",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-05",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-06",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-07",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-08",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-09",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-10",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-11",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2021-12",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-01",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2022-02",
+          "rows": 8064,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-03",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-04",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-05",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-06",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-07",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-08",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-09",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-10",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-11",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2022-12",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-01",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2023-02",
+          "rows": 8064,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-03",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-04",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-05",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-06",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-07",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-08",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-09",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-10",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-11",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2023-12",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-01",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2024-02",
+          "rows": 8352,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-03",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-04",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-05",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-06",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-07",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-08",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-09",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-10",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-11",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2024-12",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-01",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2025-02",
+          "rows": 8064,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-03",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-04",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-05",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-06",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-07",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-08",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-09",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-10",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-11",
+          "rows": 8640,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 0,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2025-12",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 7704,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2026-01",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8928,
+          "null_pct": 0.54
+        },
+        {
+          "month": "2026-02",
+          "rows": 8064,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8064,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2026-03",
+          "rows": 8928,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 8928,
+          "null_pct": 0.0
+        },
+        {
+          "month": "2026-04",
+          "rows": 4320,
+          "columns": [
+            "total_load_mw",
+            "load_forecast_mw",
+            "wind_actual_mw",
+            "wind_forecast_mw",
+            "solar_actual_mw",
+            "solar_forecast_mw",
+            "net_load_mw",
+            "is_post_rtcb"
+          ],
+          "post_rtcb_rows": 4320,
+          "null_pct": 0.0
+        }
+      ]
+    }
+  }
+}

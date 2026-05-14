@@ -34,9 +34,12 @@ htmlcov/
 # Data — raw and processed files are NOT committed; they live on Zenodo
 data/raw/
 data/processed/
-data/audit/
-data/validation/
+data/raw/
+data/processed/
 !data/README.md
+# Audit manifests and validation reports ARE committed (reproducibility evidence)
+!data/audit/
+!data/validation/
 
 # Notebooks checkpoints
 .ipynb_checkpoints/

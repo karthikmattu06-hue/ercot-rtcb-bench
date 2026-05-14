@@ -1,0 +1,74 @@
+{
+  "version": "v0.1",
+  "overall_passed": true,
+  "tables": {
+    "rt_prices": {
+      "passed": true,
+      "months": [
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "coverage": {
+        "2025-12": 1.0,
+        "2026-01": 1.0,
+        "2026-02": 1.0,
+        "2026-03": 1.0
+      },
+      "schema_errors": [],
+      "bounds_errors": [],
+      "distribution_flags": []
+    },
+    "as_clearing": {
+      "passed": true,
+      "months": [
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "coverage": {},
+      "schema_errors": [],
+      "bounds_errors": [],
+      "distribution_flags": []
+    },
+    "dam_prices": {
+      "passed": true,
+      "months": [
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "coverage": {
+        "2025-12": 1.0,
+        "2026-01": 0.9919,
+        "2026-02": 1.0,
+        "2026-03": 1.0
+      },
+      "schema_errors": [],
+      "bounds_errors": [],
+      "distribution_flags": []
+    },
+    "system_conditions": {
+      "passed": true,
+      "months": [
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "coverage": {
+        "2025-12": 1.0,
+        "2026-01": 1.0,
+        "2026-02": 1.0,
+        "2026-03": 1.0
+      },
+      "schema_errors": [],
+      "bounds_errors": [],
+      "distribution_flags": []
+    }
+  },
+  "cross_table_errors": []
+}

@@ -68,6 +68,21 @@
       "schema_errors": [],
       "bounds_errors": [],
       "distribution_flags": []
+    },
+    "asdc_hourly": {
+      "passed": true,
+      "months": [
+        "2025-12",
+        "2025-12",
+        "2025-12",
+        "..."
+      ],
+      "coverage": {
+        "overall": 0.9996438746438746
+      },
+      "schema_errors": [],
+      "bounds_errors": [],
+      "distribution_flags": []
     }
   },
   "cross_table_errors": []

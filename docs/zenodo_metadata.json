@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "title": "ercot-rtcb-bench v0.1: Post-RTC+B ERCOT Market Data for Battery Bidding Benchmarks (Dec 5, 2025 – Mar 31, 2026)",
+    "upload_type": "dataset",
+    "publication_date": "<YYYY-MM-DD — fill at upload time>",
+    "description": "<p>Open benchmark dataset for battery energy storage system (BESS) bidding under ERCOT's Real-Time Co-optimization Plus Batteries (RTC+B) market design, effective December 5, 2025.</p><p><strong>Coverage:</strong> 117 operating days from RTC+B go-live (Dec 5, 2025) through Mar 31, 2026. Includes 5-minute Real-Time prices and MCPCs, hourly Day-Ahead prices and MCPCs, per-resource AS clearings, per-product ASDC breakpoints from np4-212-cd (21.6 M rows), AS Plan quantities from np4-33-CD, system load and renewables actuals/forecasts, and the AORDC regression-fit parameters.</p><p><strong>NPRR1268 oracle verification:</strong> Per-product ASDC reconstruction is verified end-to-end against published ERCOT data using the NPRR1268 §4.4.12 disaggregation formula. All four upward products (RegUp, RRS, ECRS, Non-Spin) pass a ≤$0.10/MW-h mean price-error threshold across all 117 days (pass rate 117/117).</p><p><strong>Code:</strong> Ingest scripts, the NPRR1268 formula implementation, and LP baselines are in the linked GitHub repository (Apache-2.0). This deposit is the citable data artifact for v0.1.</p><p>This is a versioned dataset; v0.1 is an early-operational-period snapshot. Future releases will extend the window and add stochastic-MILP, transformer forecaster, and decision-focused learning baselines.</p>",
+    "creators": [
+      {
+        "name": "Mattu, Karthik",
+        "affiliation": "Rochester Institute of Technology"
+      }
+    ],
+    "keywords": [
+      "ERCOT",
+      "RTC+B",
+      "battery energy storage",
+      "electricity markets",
+      "ancillary services",
+      "energy storage bidding",
+      "ASDC",
+      "AORDC",
+      "NPRR1268",
+      "benchmark dataset",
+      "open data",
+      "power systems"
+    ],
+    "license": "apache-2.0",
+    "access_right": "open",
+    "related_identifiers": [
+      {
+        "relation": "isSupplementTo",
+        "identifier": "https://github.com/karthikmattu06-hue/ercot-rtcb-bench",
+        "resource_type": "software"
+      }
+    ],
+    "notes": "Code in the linked GitHub repository is Apache-2.0. The underlying ERCOT data is sourced from public data products (np4-212-cd, np4-188-cd, np4-33-cd, np6-788-cd, np6-323-cd, and others) under ERCOT's public data usage terms; see docs/dataset-card.md §11 for the full license discussion. The 'upload_type: dataset' classification reflects that this release's primary artifact is the data; the linked repository carries the code."
+  }
+}

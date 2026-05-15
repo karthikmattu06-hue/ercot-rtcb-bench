@@ -45,16 +45,16 @@ as written in the PUCT Report. The algorithm:
    floor applies only for breakpoints within `nspinreq`; the extension beyond that
    threshold uses raw AORDC.
 
-**Validation.** Oracle reconstruction was evaluated against 114 operating days
-(2025-12-01 through 2026-03-28, HE13) for four upward products. 4 days had no oracle
-data and were skipped. Results:
+**Validation.** Oracle reconstruction was evaluated against all 117 operating days
+in the v0.1 window (2025-12-05 through 2026-03-31, HE13) for four upward products.
+Zero days were skipped. Results:
 
 | Product | n days | Mean price error | Max mean error | Status |
 |---------|--------|-----------------|----------------|--------|
-| RegUp   | 114    | $0.0176/MW-h    | $0.0257/MW-h   | PASS   |
-| RRS     | 114    | $0.0046/MW-h    | $0.0116/MW-h   | PASS   |
-| ECRS    | 114    | $0.0024/MW-h    | $0.0025/MW-h   | PASS   |
-| NSPIN   | 114    | $0.0022/MW-h    | $0.0029/MW-h   | PASS   |
+| RegUp   | 117    | $0.0176/MW-h    | $0.0257/MW-h   | PASS   |
+| RRS     | 117    | $0.0046/MW-h    | $0.0116/MW-h   | PASS   |
+| ECRS    | 117    | $0.0024/MW-h    | $0.0025/MW-h   | PASS   |
+| NSPIN   | 117    | $0.0022/MW-h    | $0.0029/MW-h   | PASS   |
 
 Acceptance criterion: mean price error ≤ $0.10/MW-h per product. All four pass by
 more than 3×. MW breakpoint errors are identically zero (integer-MW curves).

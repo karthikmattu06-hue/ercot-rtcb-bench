@@ -94,8 +94,8 @@ def _parse_date(s: str) -> date:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--start", type=_parse_date, default=date(2025, 12, 1))
-    parser.add_argument("--end", type=_parse_date, default=date(2026, 3, 28))
+    parser.add_argument("--start", type=_parse_date, default=date(2025, 12, 5))
+    parser.add_argument("--end", type=_parse_date, default=date(2026, 3, 31))
     parser.add_argument("--he", type=int, default=13)
     args = parser.parse_args()
 

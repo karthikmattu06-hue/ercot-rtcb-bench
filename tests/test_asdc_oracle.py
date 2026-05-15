@@ -1,4 +1,4 @@
-"""ASDC ingest and oracle verification tests (ADR 0003).
+"""ASDC ingest and oracle verification tests (ADR 0003, ADR 0006).
 
 Tests cover:
   1. np4-212-cd CSV parsing (from synthetic test fixtures)
@@ -6,13 +6,17 @@ Tests cover:
   3. Oracle: curve reconstructed from ASDCParameters matches ASDCHourly
      breakpoints to within $0.10/MW-h (ADR 0003 acceptance criterion)
   4. Schema validation: all parsed records pass ASDCHourly/ASDCParameters
+  5. NPRR1268 formula unit tests
+  6. Single-hour integration oracle test against real v0.1 data (ADR 0006)
 """
 
 from __future__ import annotations
 
 import io
+import os
 import zipfile
 from datetime import date
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -32,6 +36,7 @@ from ercot_rtcb_bench.data.asdc import (
     MAX_DEMAND_PRICE_OFFSETS,
     ASDC_FLOOR,
 )
+from ercot_rtcb_bench.data.io import load_as_plan, load_asdc_hourly
 from ercot_rtcb_bench.data.schema import ASDCHourly, ASDCParameters, ASProduct
 
 
@@ -492,26 +497,72 @@ class TestNPRR1268Formula:
             )
 
     def test_nspin_three_segment_structure(self):
-        """NSPIN exhibits declining → $15 floor → cutoff (the empirical shape).
+        """NSPIN: $15 floor applies within nspinreq; raw AORDC beyond it.
 
-        Verifies the NPRR1269 floor is correctly applied to the NSPIN
-        product, which is where it's most visible due to NSPIN absorbing
-        the lowest-priced AORDC segments.
+        Per NPRR1268/NPRR1269: NSPIN curve extends beyond nspinreq (step iv
+        absorbs all remaining AORDC segments). The floor only applies to
+        breakpoints with MW ≤ nspinreq.
         """
+        nspinreq = SAMPLE_AS_PLAN["nspinreq"]
         bps = reconstruct_per_product_asdc(
             "nspin", **V01_PARAMS, as_plan=SAMPLE_AS_PLAN, apply_floor=True,
         )
+        mw = bps[:, 0]
         prices = bps[:, 1]
 
-        assert prices.min() >= ASDC_FLOOR - 1e-9, (
-            f"NSPIN min price ${prices.min():.4f} below floor ${ASDC_FLOOR}"
+        within = prices[mw <= nspinreq]
+        assert within.min() >= ASDC_FLOOR - 1e-9, (
+            f"NSPIN within-requirement min price ${within.min():.4f} "
+            f"below floor ${ASDC_FLOOR}"
         )
 
-        assert (prices > ASDC_FLOOR + 1.0).sum() > 0, (
+        assert (within > ASDC_FLOOR + 1.0).sum() > 0, (
             "NSPIN should have a declining region above the $15 floor"
         )
 
-        n_at_floor = np.isclose(prices, ASDC_FLOOR, atol=1e-6).sum()
-        assert n_at_floor > 0, (
-            "NSPIN should have at least one segment at the $15 floor"
+        beyond = prices[mw > nspinreq]
+        assert len(beyond) > 0, "NSPIN should extend beyond nspinreq (step iv)"
+        assert beyond.min() < ASDC_FLOOR, (
+            "NSPIN extension beyond nspinreq should have raw AORDC prices below floor"
         )
+
+
+# ── ADR 0006 integration oracle test ─────────────────────────────────────────
+
+_BENCH_DATA_ROOT = Path(
+    os.environ.get("BENCH_DATA_ROOT", Path.home() / "hybridbid-bench-data" / "v0.1")
+)
+_ORACLE_DATE = date(2026, 2, 15)
+_ORACLE_HE = 13
+_ORACLE_PARAMS = {"mu": 675.0, "sigma": 1524.0, "voll": 5000.0}
+_ORACLE_TOLERANCE = 0.10  # $/MW-h (ADR 0006 acceptance criterion)
+
+_oracle_data_missing = not (_BENCH_DATA_ROOT / "asdc_hourly" / "2026-02-15.parquet").exists()
+
+
+@pytest.mark.skipif(
+    _oracle_data_missing,
+    reason="Oracle data not present at BENCH_DATA_ROOT — skipped in CI",
+)
+@pytest.mark.parametrize("product", ["regup", "rrs", "ecrs", "nspin"])
+def test_oracle_single_hour(product: str) -> None:
+    """NPRR1268 formula matches published ASDC breakpoints to ≤$0.10/MW-h (ADR 0006).
+
+    Uses 2026-02-15 HE13 as the canonical integration check. Requires
+    v0.1 oracle data at BENCH_DATA_ROOT.
+    """
+    as_plan = load_as_plan(_ORACLE_DATE, _ORACLE_HE)
+    oracle = load_asdc_hourly(_ORACLE_DATE, _ORACLE_HE, product)
+    recon = reconstruct_per_product_asdc(product, **_ORACLE_PARAMS, as_plan=as_plan)
+
+    assert len(oracle) == len(recon), (
+        f"{product}: oracle has {len(oracle)} breakpoints, recon has {len(recon)}"
+    )
+    price_err = np.abs(oracle[:, 1] - recon[:, 1])
+    mean_err = float(price_err.mean())
+    assert mean_err <= _ORACLE_TOLERANCE, (
+        f"{product}: mean price error ${mean_err:.4f}/MW-h exceeds ${_ORACLE_TOLERANCE}/MW-h"
+    )
+
+    mw_err = np.abs(oracle[:, 0] - recon[:, 0]).max()
+    assert mw_err == 0.0, f"{product}: MW breakpoint mismatch, max err={mw_err}"

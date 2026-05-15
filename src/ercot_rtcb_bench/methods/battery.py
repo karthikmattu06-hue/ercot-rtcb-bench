@@ -45,7 +45,7 @@ class BESSParams:
         soc_init: float = 0.5,
         soc_min: float = 0.0,
         soc_max: float = 1.0,
-    ) -> "BESSParams":
+    ) -> BESSParams:
         return cls(
             resource_name=meta.resource_name,
             power_mw=meta.power_mw,
@@ -57,7 +57,7 @@ class BESSParams:
         )
 
     @classmethod
-    def default_100mw_4hr(cls, resource_name: str = "BATT_BENCH") -> "BESSParams":
+    def default_100mw_4hr(cls, resource_name: str = "BATT_BENCH") -> BESSParams:
         """100 MW / 400 MWh, 88% RTE — a representative ERCOT BESS."""
         return cls(
             resource_name=resource_name,

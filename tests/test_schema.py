@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime, timedelta, timezone
 
 import pytest
+from pydantic import ValidationError
 
 from ercot_rtcb_bench.data.schema import (
     ASClearing,
-    ASProduct,
     ASDCParameters,
-    ASDCSegment,
-    Awards,
+    ASProduct,
     BESSMetadata,
     DAMPrices,
     RTPrices,
@@ -21,7 +20,7 @@ from ercot_rtcb_bench.data.schema import (
 
 
 def utc(year, month, day, hour=0, minute=0):
-    return datetime(year, month, day, hour, minute, tzinfo=timezone.utc)
+    return datetime(year, month, day, hour, minute, tzinfo=UTC)
 
 
 def _rt_prices(**kwargs):
@@ -56,22 +55,21 @@ class TestRTPrices:
         assert r.lmp == -100.0
 
     def test_lmp_above_cap_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             _rt_prices(lmp=5001.0)
 
     def test_non_utc_timestamp_rejected(self):
-        import pytz
-        cst = pytz.timezone("US/Central")
-        ts = cst.localize(datetime(2026, 1, 15, 6, 0))
-        with pytest.raises(Exception):
+        cst = timezone(timedelta(hours=-6))
+        ts = datetime(2026, 1, 15, 6, 0, tzinfo=cst)
+        with pytest.raises(ValidationError):
             _rt_prices(timestamp_utc=ts)
 
     def test_non_five_min_aligned_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             _rt_prices(timestamp_utc=utc(2026, 1, 15, 12, 3))
 
     def test_negative_mcpc_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             _rt_prices(mcpc_rrs=-0.1)
 
 
@@ -94,7 +92,7 @@ class TestASClearing:
         assert r.mcpc == 0.0
 
     def test_negative_mcpc_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             ASClearing(
                 timestamp_utc=utc(2026, 1, 15, 12, 0),
                 as_product=ASProduct.RRS,
@@ -104,7 +102,7 @@ class TestASClearing:
 
 class TestDAMPrices:
     def test_non_hour_aligned_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             DAMPrices(
                 timestamp_utc=utc(2026, 1, 15, 12, 30),
                 settlement_point="HB_HUBAVG",
@@ -148,7 +146,7 @@ class TestSystemConditions:
         assert r.total_load_mw == 50000.0
 
     def test_net_load_inconsistency_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             SystemConditions(
                 timestamp_utc=utc(2026, 1, 15, 12, 0),
                 total_load_mw=50000.0,
@@ -174,7 +172,7 @@ class TestBESSMetadata:
         assert b.duration_hours == 4.0
 
     def test_duration_inconsistency_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             BESSMetadata(
                 resource_name="BATT_SOUTH_100",
                 settlement_point="LZ_SOUTH",
@@ -185,7 +183,7 @@ class TestBESSMetadata:
             )
 
     def test_rte_above_one_rejected(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             BESSMetadata(
                 resource_name="BATT_X",
                 settlement_point="HB_HUBAVG",
@@ -214,7 +212,7 @@ class TestASDCParameters:
         assert a.as_product == ASProduct.REGUP
 
     def test_weights_must_sum_to_one(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             ASDCParameters(
                 as_product=ASProduct.REGUP,
                 effective_date=date(2025, 12, 5),

@@ -461,7 +461,7 @@ def parse_aordc_xlsx(
             col = _resolve_col(df, field)  # type: ignore[arg-type]
             if col is None:
                 raise ValueError(f"Missing column for {field!r} in xlsx")
-            return float(row[col])
+            return float(row[col])  # noqa: B023
 
         try:
             params = ASDCParameters(
@@ -597,7 +597,7 @@ def reconstruct_per_product_asdc(
     aordc     = _aordc_discretized(mu, sigma, voll)  # shape (N,2): [reserve, price]
     res_arr   = aordc[:, 0].astype(int)
     price_arr = aordc[:, 1]
-    price_map = dict(zip(res_arr.tolist(), price_arr.tolist()))
+    price_map = dict(zip(res_arr.tolist(), price_arr.tolist(), strict=False))
 
     # Endpoints: last reserve with AORDC >= product min price
     k_regup = int(res_arr[price_arr >= MIN_PRICE["regup"]][-1])

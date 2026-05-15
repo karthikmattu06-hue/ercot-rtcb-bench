@@ -570,7 +570,10 @@ def reconstruct_per_product_asdc(
     product : one of "regup", "regdn", "rrs", "ecrs", "nspin"
     mu, sigma, voll : AORDC regression parameters.
     as_plan : dict with keys "rureq", "rrsreq", "ecrsreq", "regdnreq", "nspinreq".
-    apply_floor : if True, apply NPRR1269 $15/MW-h floor to regup/rrs/ecrs (not nspin).
+    apply_floor : if True, apply NPRR1269 $15/MW-h floor. For regup/rrs/ecrs the
+        floor covers the entire curve. For nspin it covers only breakpoints with
+        MW ≤ nspinreq; the AORDC tail segments beyond that quantity are published
+        at raw AORDC prices (below $15) and must not be floored.
 
     Returns
     -------

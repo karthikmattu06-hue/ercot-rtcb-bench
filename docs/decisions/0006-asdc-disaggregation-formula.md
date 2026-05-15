@@ -41,9 +41,13 @@ as written in the PUCT Report. The algorithm:
    breakpoints at `(mcl_mw + j + 1, AORDC(R_j))` for j = 0..N−1. Max demand prices
    per product: RegUp=9052, RRS=7051, ECRS=5050, NSPIN=5000 $/MW-h.
 
-7. **$15/MW-h floor** (NPRR1269): Applied to all upward products. For NSPIN, the
-   floor applies only for breakpoints within `nspinreq`; the extension beyond that
-   threshold uses raw AORDC.
+7. **$15/MW-h floor** (NPRR1269): Applied to all upward products for breakpoints
+   within the AS Plan quantity for that product. For RegUp/RRS/ECRS this covers
+   the entire curve (their curves end at the plan requirement). For NSPIN it covers
+   only breakpoints with MW ≤ `nspinreq`; the AORDC tail segments beyond that
+   boundary (added by step iv) are published at raw AORDC prices and must *not* be
+   floored. Applying the floor past `nspinreq` was the original bug: it inflated
+   those tail prices by up to $14.99/MW-h and produced a $7.11/MW-h mean error.
 
 **Validation.** Oracle reconstruction was evaluated against all 117 operating days
 in the v0.1 window (2025-12-05 through 2026-03-31, HE13) for four upward products.

@@ -1,5 +1,7 @@
 # ercot-rtcb-bench
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20204994.svg)](https://doi.org/10.5281/zenodo.20204994)
+
 An open benchmark for battery energy storage bidding under ERCOT's
 Real-Time Co-optimization Plus Batteries (RTC+B) market design,
 which went live on December 5, 2025.

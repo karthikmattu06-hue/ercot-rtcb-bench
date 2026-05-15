@@ -1,21 +1,27 @@
 cff-version: 1.2.0
-title: "ercot-rtcb-bench: An Open Benchmark for Battery Bidding in Post-RTC+B ERCOT"
+title: "ercot-rtcb-bench v0.1: Post-RTC+B ERCOT Market Data for Battery Bidding Benchmarks"
 authors:
   - family-names: Mattu
     given-names: Karthik
-date-released: 2026-06-XX
+    affiliation: "Rochester Institute of Technology"
+date-released: 2026-05-15
+version: "0.1"
 license: Apache-2.0
 repository-code: https://github.com/karthikmattu06-hue/ercot-rtcb-bench
 abstract: >
-  An open benchmark and reference bidding stack for ERCOT's Real-Time
-  Co-optimization Plus Batteries (RTC+B) market design. Includes versioned
-  datasets, reference implementations (perfect-foresight MIP, stochastic MILP,
-  SAC, decision-focused learning), and an evaluation harness for rolling-horizon
-  backtesting.
+  117-day open benchmark dataset for BESS bidding under ERCOT's RTC+B
+  market design (Dec 5, 2025 – Mar 31, 2026). Includes RT/DAM prices,
+  AS clearings, per-product ASDC breakpoints, and NPRR1268-verified
+  oracle reconstruction.
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20204994
+    description: Zenodo deposit for v0.1 dataset
 keywords:
   - energy storage
   - battery bidding
   - ERCOT
   - electricity markets
-  - reinforcement learning
-  - optimization
+  - ancillary services
+  - RTC+B
+  - benchmark dataset

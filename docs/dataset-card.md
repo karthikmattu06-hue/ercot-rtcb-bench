@@ -321,14 +321,13 @@ and commercial use of public market data without fee.
 
 ## Citation
 
-```bibtex
-@software{mattu2026ercotrtcbbench,
-  author = {Mattu, Karthik},
-  title  = {ercot-rtcb-bench: An Open Benchmark for Battery Bidding in Post-RTC+B ERCOT},
-  year   = {2026},
-  url    = {https://github.com/karthikmattu06-hue/ercot-rtcb-bench},
-}
-```
+Cite this dataset as:
+
+> Mattu, K. (2026). *ercot-rtcb-bench v0.1: Post-RTC+B ERCOT Market
+> Data for Battery Bidding Benchmarks (Dec 5, 2025 – Mar 31, 2026)*
+> [Data set]. Zenodo. https://doi.org/10.5281/zenodo.20204994
+
+DOI: [10.5281/zenodo.20204994](https://doi.org/10.5281/zenodo.20204994)
 
 See also `CITATION.cff` in the repository root.
 
@@ -338,7 +337,7 @@ See also `CITATION.cff` in the repository root.
 
 | Version | Date range | Released | Notes |
 |---------|------------|----------|-------|
-| **v0.1** | 2025-12-05 – 2026-03-31 | 2026-05 | This release. AS clearing through Mar 21 only. |
+| **v0.1** | 2025-12-05 – 2026-03-31 | 2026-05-15 | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20204994.svg)](https://doi.org/10.5281/zenodo.20204994) AS clearing through Mar 21 only. |
 | **v1.0** | 2025-12-05 – 2026-06-05 | Planned | Full 6-month window. ASDC parameters. Multi-SP LMP. |
 
 See `docs/decisions/0001-versioned-datasets.md` for the rationale behind the

@@ -8,21 +8,21 @@ Pydantic models accept the data (or document explicit deprecation paths).
 from __future__ import annotations
 
 import os
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 import pandas as pd
 import pytest
+from pydantic import ValidationError
 
 from ercot_rtcb_bench.data.schema import (
-    ASProduct,
+    PRODUCT_FAMILY,
     ASDCHourly,
     ASDCParameters,
+    ASProduct,
     Awards,
     DAMPrices,
-    PRODUCT_FAMILY,
     RTPrices,
-    SettlementPointType,
 )
 
 V01_DIR = Path(os.environ.get("V01_DIR", Path.home() / "hybridbid-bench-data" / "v0.1"))
@@ -63,9 +63,9 @@ class TestADR0002RRSUnified:
             assert col in fields
 
     def test_bess_ufr_must_be_zero(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             Awards(
-                timestamp_utc=datetime(2026, 1, 15, 12, 0, tzinfo=timezone.utc),
+                timestamp_utc=datetime(2026, 1, 15, 12, 0, tzinfo=UTC),
                 resource_name="BATT_X",
                 award_energy=0.0,
                 award_regup=0.0,
@@ -81,7 +81,7 @@ class TestADR0002RRSUnified:
     def test_awards_rrs_invariant_documented(self):
         """Awards with non-zero RRS sub-product splits are valid (ADR 0002)."""
         a = Awards(
-            timestamp_utc=datetime(2026, 1, 15, 12, 0, tzinfo=timezone.utc),
+            timestamp_utc=datetime(2026, 1, 15, 12, 0, tzinfo=UTC),
             resource_name="BATT_X",
             award_energy=20.0,
             award_regup=0.0,
@@ -132,7 +132,7 @@ class TestADR0004NonSpin:
 
 class TestADR0003ASDCSchema:
     def test_asdc_parameters_weights_must_sum_to_one(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             ASDCParameters(
                 as_product=ASProduct.REGUP,
                 effective_date=date(2025, 12, 5),
@@ -177,7 +177,7 @@ class TestADR0003ASDCSchema:
         assert h.segment_index == 0
 
     def test_asdc_hourly_hour_ending_bounds(self):
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             ASDCHourly(
                 operating_date=date(2026, 1, 15),
                 hour_ending=0,  # must be 1..24

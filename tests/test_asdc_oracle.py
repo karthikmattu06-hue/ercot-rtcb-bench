@@ -24,21 +24,20 @@ import pytest
 from scipy import stats
 
 from ercot_rtcb_bench.data.asdc import (
+    ASDC_FLOOR,
+    MAX_DEMAND_PRICE_OFFSETS,
+    MCL,
+    _aordc,
     _map_product,
+    _mcl_quantities,
     _normalize_columns,
     _parse_np4_212_csv,
     _parse_np4_212_zip,
     parse_aordc_xlsx,
     reconstruct_per_product_asdc,
-    _aordc,
-    _mcl_quantities,
-    MCL,
-    MAX_DEMAND_PRICE_OFFSETS,
-    ASDC_FLOOR,
 )
 from ercot_rtcb_bench.data.io import load_as_plan, load_asdc_hourly
 from ercot_rtcb_bench.data.schema import ASDCHourly, ASDCParameters, ASProduct
-
 
 # ── Fixtures ──────────────────────────────────────────────────────────────────
 
@@ -326,7 +325,7 @@ class TestASDCOracleAccuracy:
                 as_plan_mw=float(params.mu),
                 source_filename="oracle_test.csv",
             )
-            for i, (q, p) in enumerate(zip(q_values, prices))
+            for i, (q, p) in enumerate(zip(q_values, prices, strict=False))
         ]
 
     @pytest.mark.parametrize("product_row", AORDC_ROWS)

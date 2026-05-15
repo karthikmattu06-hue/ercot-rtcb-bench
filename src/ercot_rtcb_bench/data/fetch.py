@@ -45,7 +45,7 @@ def _get_api():  # type: ignore[return]
     try:
         from gridstatus.ercot_api.ercot_api import ErcotAPI
     except ImportError:
-        raise ImportError("gridstatus>=0.35.0 required: pip install 'ercot-rtcb-bench[fetch]'")
+        raise ImportError("gridstatus>=0.35.0 required: pip install 'ercot-rtcb-bench[fetch]'") from None
     _api_client = ErcotAPI(sleep_seconds=2.0, max_retries=5)
     _api_client.get_token()
     return _api_client

@@ -6,7 +6,7 @@ No ERCOT data required.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC
 
 import numpy as np
 import pandas as pd
@@ -16,7 +16,7 @@ from ercot_rtcb_bench.methods.battery import BESSParams
 from ercot_rtcb_bench.methods.perfect_foresight import perfect_foresight
 from ercot_rtcb_bench.methods.point_forecast import _dam_to_forecast_prices, point_forecast
 
-UTC = timezone.utc
+UTC = UTC
 
 
 # ── Fixtures ──────────────────────────────────────────────────────────────────
@@ -132,7 +132,6 @@ class TestPerfectForesight:
 
     def test_soc_bounds_respected(self, small_bess, tiny_prices):
         result = perfect_foresight(small_bess, tiny_prices)
-        E = small_bess.energy_mwh
         soc = result.dispatch["soc_mwh"].values
         assert np.all(soc >= small_bess.soc_energy_min - 1e-6)
         assert np.all(soc <= small_bess.soc_energy_max + 1e-6)

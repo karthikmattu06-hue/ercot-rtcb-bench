@@ -2,11 +2,7 @@
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
-
 import pandas as pd
-import pytest
 
 from ercot_rtcb_bench.data.validate import (
     TableReport,

@@ -167,12 +167,12 @@ def flag_distribution_outliers(
     values = [(m, s[metric]) for m, s in monthly_stats.items() if metric in s and not np.isnan(s[metric])]
     if len(values) < 3:
         return
-    months, vals = zip(*values)
+    months, vals = zip(*values, strict=False)
     arr = np.array(vals, dtype=float)
     mean, std = np.nanmean(arr), np.nanstd(arr)
     if std == 0:
         return
-    for m, v in zip(months, arr):
+    for m, v in zip(months, arr, strict=False):
         if abs(v - mean) > DISTRIBUTION_SIGMA * std:
             msg = f"{m}: {metric}={v:.2f} deviates {abs(v-mean)/std:.1f}σ from mean {mean:.2f}"
             report.distribution_flags.append(msg)

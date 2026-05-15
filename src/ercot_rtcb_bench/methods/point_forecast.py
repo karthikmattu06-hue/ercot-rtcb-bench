@@ -15,11 +15,10 @@ import logging
 
 import pandas as pd
 
-from ercot_rtcb_bench.data.schema import PRODUCT_FAMILY
 from ercot_rtcb_bench.methods.battery import BESSParams
 from ercot_rtcb_bench.methods.perfect_foresight import (
-    PerfectForesightResult,
     _PRICE_COLS,
+    PerfectForesightResult,
     perfect_foresight,
 )
 
@@ -60,7 +59,6 @@ def _dam_to_forecast_prices(dam_hourly: pd.DataFrame, rt_index: pd.DatetimeIndex
         df = df.rename(columns={"dam_spp": "lmp"})
 
     # Keep only columns we need, reindex to RT 5-min grid
-    available = [c for c in _PRICE_COLS if c in df.columns]
     missing = [c for c in _PRICE_COLS if c not in df.columns]
     if missing:
         logger.warning("DAM prices missing columns %s; filling with 0", missing)

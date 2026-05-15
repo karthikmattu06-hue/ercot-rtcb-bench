@@ -18,7 +18,6 @@ from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-
 # ── Enums ─────────────────────────────────────────────────────────────────────
 
 
@@ -207,7 +206,7 @@ class Awards(BaseModel):
         return _validate_five_min(v)
 
     @model_validator(mode="after")
-    def bess_ufr_zero(self) -> "Awards":
+    def bess_ufr_zero(self) -> Awards:
         if self.is_bess and self.award_rrs_ufr != 0.0:
             raise ValueError("BESS resources must have award_rrs_ufr == 0 (load-side product)")
         return self
@@ -237,7 +236,7 @@ class ASDCParameters(BaseModel):
     source_doc_revision: str
 
     @model_validator(mode="after")
-    def weights_sum_to_one(self) -> "ASDCParameters":
+    def weights_sum_to_one(self) -> ASDCParameters:
         total = self.mix_weight_30min + self.mix_weight_60min
         if abs(total - 1.0) > 1e-6:
             raise ValueError(
@@ -289,7 +288,7 @@ class SystemConditions(BaseModel):
         return _validate_utc(v)
 
     @model_validator(mode="after")
-    def net_load_consistent(self) -> "SystemConditions":
+    def net_load_consistent(self) -> SystemConditions:
         expected = self.total_load_mw - self.wind_actual_mw - self.solar_actual_mw
         if abs(self.net_load_mw - expected) > 1.0:
             raise ValueError(
@@ -345,7 +344,7 @@ class BESSMetadata(BaseModel):
     duration_hours: NonNegFloat  # energy_mwh / power_mw
 
     @model_validator(mode="after")
-    def duration_consistent(self) -> "BESSMetadata":
+    def duration_consistent(self) -> BESSMetadata:
         if self.power_mw > 0:
             expected = self.energy_mwh / self.power_mw
             if abs(self.duration_hours - expected) > 0.01:

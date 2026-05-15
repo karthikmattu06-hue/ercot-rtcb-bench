@@ -326,7 +326,7 @@ def _list_all_misapp_docs() -> list[dict]:
         )
 
     docs = []
-    for doc_id, filename in zip(all_ids, all_filenames):
+    for doc_id, filename in zip(all_ids, all_filenames, strict=False):
         filename = filename.strip()
         if "csv" in filename.lower():
             docs.append({"doclookup_id": doc_id, "filename": filename})

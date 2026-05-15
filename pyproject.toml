@@ -43,7 +43,7 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
-ignore = ["E501"]
+ignore = ["E501", "UP042"]
 
 [tool.black]
 line-length = 100

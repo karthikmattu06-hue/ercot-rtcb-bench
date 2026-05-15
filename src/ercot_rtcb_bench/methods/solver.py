@@ -145,13 +145,13 @@ def _solve_highs(c, A_ub, b_ub, A_eq, b_eq, bounds, integrality, mip_gap, time_l
 
     # Add inequality constraints row-by-row (sparse-friendly)
     if A_ub is not None:
-        for i, (row, rhs) in enumerate(zip(A_ub, b_ub)):
+        for _i, (row, rhs) in enumerate(zip(A_ub, b_ub, strict=False)):
             nz_idx = np.nonzero(row)[0]
             h.addRow(-1e30, float(rhs), len(nz_idx), nz_idx.tolist(),
                      row[nz_idx].tolist())
 
     if A_eq is not None:
-        for i, (row, rhs) in enumerate(zip(A_eq, b_eq)):
+        for _i, (row, rhs) in enumerate(zip(A_eq, b_eq, strict=False)):
             nz_idx = np.nonzero(row)[0]
             h.addRow(float(rhs), float(rhs), len(nz_idx), nz_idx.tolist(),
                      row[nz_idx].tolist())

@@ -136,6 +136,29 @@ The canonical schema (above) uses `mcpc_*`. `smoke_milp.py` handles this rename.
 **Source**: ERCOT "AORDC Regression Fit Parameters for RTC+B Go-Live" xlsx
 (published 2025-09-30, RTCBTF Key Documents page). Parsed via `scripts/ingest_asdc_params.py`.
 
+#### `as_plan/` — AS Plan quantities per operating hour (added Week 3)
+
+| Column | Type | Unit | Description |
+|--------|------|------|-------------|
+| `operating_date` | date | — | Operating date (Central Time, ERCOT convention) |
+| `hour_ending` | int | — | Hour ending 1–24 (Central Time) |
+| `rureq` | float64 | MW | Regulation-Up reserve requirement |
+| `regdnreq` | float64 | MW | Regulation-Down reserve requirement |
+| `rrsreq` | float64 | MW | Responsive Reserve Service requirement |
+| `ecrsreq` | float64 | MW | ERCOT Contingency Reserve Service requirement |
+| `nspinreq` | float64 | MW | Non-Spinning Reserve requirement |
+
+**v0.1 scope**: 117 days × 24 hours = 2,808 expected rows; 2,807 actual (one row
+missing for the DST spring-forward non-existent hour, Mar 8 2026 HE 3 CT).
+
+**Source**: ERCOT EMILMIS `np4-33-CD` "DAM Ancillary Service Plan" (Report Type ID 12316,
+public, daily). Two-surface ingest per ADR 0005: MISAPP for recent data
+(`data/as_plan.py: fetch_as_plan_current`), ERCOT Public Data API archive for
+historical backfill (`scripts/backfill_as_plan_history.py`).
+
+**Consumer**: Required as an input to the NPRR1268 per-product ASDC disaggregation
+formula (see Chunk 3 / ADR 0006).
+
 #### `system_conditions/` — 5-minute system-level observables
 
 | Column | Type | Unit | Description |

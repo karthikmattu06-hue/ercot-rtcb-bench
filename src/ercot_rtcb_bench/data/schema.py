@@ -16,7 +16,7 @@ from datetime import date, datetime
 from enum import Enum
 from typing import Annotated
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 # ── Enums ─────────────────────────────────────────────────────────────────────
@@ -297,6 +297,34 @@ class SystemConditions(BaseModel):
                 f"load - wind - solar = {expected:.1f}"
             )
         return self
+
+
+class ASPlan(BaseModel):
+    """AS Plan quantities per operating hour, sourced from np4-33-CD.
+
+    These are the per-product AS reserve requirements ERCOT publishes
+    for each Operating Hour of an Operating Day. Per NPRR1268 §4.4.12,
+    these quantities (RUREQ, RRSREQ, ECRSREQ) are inputs to the
+    per-product ASDC disaggregation formula.
+
+    Storage convention: hour_ending in CT (Central Time, ERCOT native).
+    operating_date is the ERCOT Operating Date (not UTC).
+
+    Refs:
+    - ERCOT data product np4-33-CD (Report Type ID 12316)
+    - ADR 0005 (two-surface ingest pattern)
+    - NPRR1268 §4.4.12 (consumer)
+    """
+
+    model_config = ConfigDict(frozen=True, strict=True)
+
+    operating_date: date
+    hour_ending: Annotated[int, Field(ge=1, le=24)]  # CT, ERCOT convention
+    rureq:    float = Field(ge=0)  # Reg-Up requirement, MW
+    regdnreq: float = Field(ge=0)  # Reg-Down requirement, MW
+    rrsreq:   float = Field(ge=0)  # RRS requirement, MW
+    ecrsreq:  float = Field(ge=0)  # ECRS requirement, MW
+    nspinreq: float = Field(ge=0)  # Non-Spin requirement, MW
 
 
 class ASDCSegment(BaseModel):

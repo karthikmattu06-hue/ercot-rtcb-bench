@@ -329,6 +329,81 @@ def validate_system_conditions(
     return report
 
 
+# ── AS Plan validator ─────────────────────────────────────────────────────────
+
+# v0.1 window: Dec 5, 2025 – Mar 31, 2026 (117 days × 24 hours = 2808)
+# Minus one DST spring-forward gap (Mar 8, 2026 HE 3 CT does not exist in RT)
+AS_PLAN_EXPECTED_ROWS = 2807
+AS_PLAN_COVERAGE_TARGET = 0.99  # ≥99% gate
+
+# Sanity bounds per product column (MW)
+_AS_PLAN_BOUNDS: dict[str, tuple[float, float]] = {
+    "rureq":    (0.0, 5_000.0),
+    "regdnreq": (0.0, 5_000.0),
+    "rrsreq":   (0.0, 10_000.0),
+    "ecrsreq":  (0.0, 10_000.0),
+    "nspinreq": (0.0, 10_000.0),
+}
+
+
+def validate_as_plan(table_dir: Path) -> TableReport:
+    """Validate AS Plan Parquet files under table_dir.
+
+    Checks:
+      - Coverage: ≥99% of expected 2,807 (operating_date, hour_ending) pairs.
+      - Bounds: each product column within defined MW range.
+      - Schema: required columns present.
+    """
+    report = TableReport(table="as_plan")
+    parquet_files = sorted(table_dir.glob("*.parquet"))
+
+    if not parquet_files:
+        report.fail(f"No Parquet files found in {table_dir}")
+        return report
+
+    frames: list[pd.DataFrame] = []
+    for f in parquet_files:
+        month = f.stem
+        report.months_checked.append(month)
+        df = pd.read_parquet(f)
+
+        required = {"operating_date", "hour_ending", "rureq", "regdnreq", "rrsreq", "ecrsreq", "nspinreq"}
+        missing_cols = required - set(df.columns)
+        if missing_cols:
+            report.fail(f"{month}: missing columns {missing_cols}")
+            continue
+
+        frames.append(df)
+
+    if not frames:
+        report.fail("No valid data after schema check")
+        return report
+
+    all_df = pd.concat(frames, ignore_index=True)
+
+    # Coverage: count unique (operating_date, hour_ending) pairs
+    n_actual = len(all_df[["operating_date", "hour_ending"]].drop_duplicates())
+    coverage = n_actual / AS_PLAN_EXPECTED_ROWS
+    report.coverage_by_month["overall"] = round(coverage, 4)
+    if coverage < AS_PLAN_COVERAGE_TARGET:
+        report.fail(
+            f"Coverage {coverage:.1%} < {AS_PLAN_COVERAGE_TARGET:.1%} "
+            f"({n_actual}/{AS_PLAN_EXPECTED_ROWS} expected rows)"
+        )
+
+    # Bounds check per product column
+    for col, (lo, hi) in _AS_PLAN_BOUNDS.items():
+        if col not in all_df.columns:
+            continue
+        oob = all_df[(all_df[col] < lo) | (all_df[col] > hi)]
+        if len(oob) > 0:
+            msg = f"{col}: {len(oob)} rows outside [{lo}, {hi}] MW"
+            report.bounds_errors.append(msg)
+            report.fail(msg)
+
+    return report
+
+
 # ── Cross-table checks ────────────────────────────────────────────────────────
 
 
@@ -408,6 +483,17 @@ def run_validation(
             continue
         logger.info("Validating %s...", table_name)
         report.tables[table_name] = validator(table_dir, tbl_start, tbl_end)
+
+    # AS Plan uses a different signature (no timestamp bounds — keyed by operating_date)
+    as_plan_dir = processed_dir / "as_plan"
+    if as_plan_dir.exists():
+        logger.info("Validating as_plan...")
+        report.tables["as_plan"] = validate_as_plan(as_plan_dir)
+    else:
+        logger.warning("Table directory missing: %s", as_plan_dir)
+        r = TableReport(table="as_plan")
+        r.fail(f"Directory {as_plan_dir} does not exist")
+        report.tables["as_plan"] = r
 
     cross_table_consistency(processed_dir, report, as_clearing_end=as_clearing_end)
 

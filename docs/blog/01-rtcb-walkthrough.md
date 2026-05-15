@@ -1,3 +1,5 @@
+<!-- Originally published at: https://substack.com/@karthik204653 -->
+
 # What RTC+B Actually Changed: A Visual Walkthrough of the 6-D Action Space
 
 > **Published**: 2026-05-14  
@@ -33,8 +35,8 @@ single product), ECRS (added June 2023), and Non-Spin. Five products total.
 On December 5, 2025, ERCOT activated RTC+B. The core change is conceptually simple
 but computationally expensive:
 
-**SCED now co-optimizes energy and ancillary services jointly, with explicit BESS
-state-of-charge tracking.**
+SCED now co-optimizes energy and ancillary services jointly, with explicit BESS
+state-of-charge tracking.
 
 The SCED optimization problem for a single BESS becomes (simplified):
 
@@ -168,12 +170,9 @@ four approaches.
 
 ## Data Preview
 
-The figure below shows the REGUP, RRS, ECRS, and NSPIN MCPCs for January 2026.
-The price spikes on January 8 (MIP tighten) and the persistent near-zero ECRS
-prices in early January are visible.
-
-*(Figure: 4-panel time series plot — rt_mcpc for each AS product, Jan 2026.
-Generated in notebooks/exploratory/. Will be embedded here before publication.)*
+The REGUP, RRS, ECRS, and NSPIN MCPCs for January 2026 show the price spikes on
+January 8 (MIP tighten) and the persistent near-zero ECRS prices in early January.
+Full time-series plots are in the repo's exploratory notebooks.
 
 ---
 

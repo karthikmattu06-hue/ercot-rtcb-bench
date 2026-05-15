@@ -29,10 +29,14 @@ target venue: NeurIPS 2026 Climate Change AI workshop).
 
 ## Dataset
 
-**v0.1** (Dec 5, 2025 – Mar 31, 2026): hosted on Zenodo (link forthcoming).
+**v0.1** (Dec 5, 2025 – Mar 31, 2026): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20204994.svg)](https://doi.org/10.5281/zenodo.20204994)  
 **v1.0** (Dec 5, 2025 – Jun 5, 2026): in preparation.
 
 See [`docs/dataset-card.md`](docs/dataset-card.md) for full documentation.
+
+## Writing
+
+- [Post #1: What RTC+B Actually Changed — A Visual Walkthrough of the 6-D Action Space](https://substack.com/@karthik204653) (2026-05-14)
 
 ## Repository structure
 

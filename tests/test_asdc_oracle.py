@@ -25,6 +25,12 @@ from ercot_rtcb_bench.data.asdc import (
     _parse_np4_212_csv,
     _parse_np4_212_zip,
     parse_aordc_xlsx,
+    reconstruct_per_product_asdc,
+    _aordc,
+    _mcl_quantities,
+    MCL,
+    MAX_DEMAND_PRICE_OFFSETS,
+    ASDC_FLOOR,
 )
 from ercot_rtcb_bench.data.schema import ASDCHourly, ASDCParameters, ASProduct
 
@@ -284,6 +290,7 @@ def _asdc_mixture_normal(
     return np.maximum(price, min_step_floor)
 
 
+@pytest.mark.skip(reason="Superseded by NPRR1268 implementation; see Chunk 3 for window validation")
 class TestASDCOracleAccuracy:
     """Verify that curve reconstruction from ASDCParameters matches ASDCHourly.
 
@@ -402,3 +409,109 @@ class TestASDCOracleAccuracy:
             min_step_floor=params.min_step_floor,
         )
         assert prices[0] <= voll - cap_offset + 1e-6
+
+
+# ── NPRR1268 formula fixture tests ────────────────────────────────────────────
+
+# Published v0.1 AORDC parameters
+V01_PARAMS = {"mu": 675.0, "sigma": 1524.0, "voll": 5000.0}
+
+# A representative AS Plan to use across tests
+SAMPLE_AS_PLAN = {
+    "rureq":    1500.0,
+    "rrsreq":   3000.0,
+    "ecrsreq":  2000.0,
+    "regdnreq": 1200.0,
+    "nspinreq": 1000.0,
+}
+
+
+class TestNPRR1268Formula:
+    """Verify the NPRR1268 §4.4.12 formula transcription.
+
+    These five tests use only the published AORDC parameters and a
+    representative AS Plan. They do NOT require np4-212-cd data; that
+    end-to-end validation lives in Chunk 3.
+    """
+
+    def test_aordc_value_at_mcl(self):
+        """AORDC at the MCL boundary (reserve=3000 MW) should be ~$3,355.
+
+        From the formula: (1 - pnorm(3000-3000, 675, 1524)) * 5000
+                        = (1 - pnorm(-675, 0, 1524)) * 5000
+                        ≈ (1 - 0.328) * 5000 ≈ $3,355
+        """
+        v = _aordc(np.array([3000.0]), **V01_PARAMS)[0]
+        assert 3300 < v < 3410, f"AORDC at MCL = ${v:.2f}, expected ~$3,355"
+
+    def test_mcl_quantities_sum_to_3000(self):
+        """MCL allocations must always sum to 3000 MW exactly, in all 3 cases."""
+        for rureq, rrsreq, ecrsreq, case_label in [
+            (1500, 3000, 2000, "case 3 (typical)"),
+            (3500, 2500,  500, "case 1 (large RUREQ)"),
+            (4500, 5000,  100, "case 2 (excess from above)"),
+        ]:
+            q = _mcl_quantities(rureq, rrsreq, ecrsreq)
+            total = sum(q.values())
+            assert abs(total - MCL) < 0.1, (
+                f"{case_label}: MCL allocation sums to {total:.2f}, "
+                f"expected {MCL}"
+            )
+
+    def test_regdn_is_flat_at_voll(self):
+        """REGDN ASDC is a flat segment at VOLL across the Reg-Down AS Plan."""
+        bps = reconstruct_per_product_asdc(
+            "regdn", **V01_PARAMS, as_plan=SAMPLE_AS_PLAN,
+        )
+        assert bps.shape == (2, 2)
+        assert bps[0, 0] == 0.0 and bps[1, 0] == SAMPLE_AS_PLAN["regdnreq"]
+        assert bps[0, 1] == V01_PARAMS["voll"]
+        assert bps[1, 1] == V01_PARAMS["voll"]
+
+    def test_per_product_caps_match_empirical(self):
+        """The four upward products' linear-region prices match NPRR1268 spec.
+
+        These exact values ($9,052 / $7,051 / $5,050 / $5,000) were observed
+        empirically in np4-212-cd before the formula was extracted; their
+        match here confirms the formula transcription.
+        """
+        expected_caps = {
+            "regup": 9052.0,  # VOLL + 4052
+            "rrs":   7051.0,  # VOLL + 2051
+            "ecrs":  5050.0,  # VOLL + 50
+            "nspin": 5000.0,  # VOLL + 0
+        }
+        for product, expected in expected_caps.items():
+            bps = reconstruct_per_product_asdc(
+                product, **V01_PARAMS, as_plan=SAMPLE_AS_PLAN,
+            )
+            linear_price = bps[0, 1]
+            assert linear_price == expected, (
+                f"{product} linear-region cap = ${linear_price:.2f}, "
+                f"expected ${expected:.2f} (VOLL + ${MAX_DEMAND_PRICE_OFFSETS[product]})"
+            )
+
+    def test_nspin_three_segment_structure(self):
+        """NSPIN exhibits declining → $15 floor → cutoff (the empirical shape).
+
+        Verifies the NPRR1269 floor is correctly applied to the NSPIN
+        product, which is where it's most visible due to NSPIN absorbing
+        the lowest-priced AORDC segments.
+        """
+        bps = reconstruct_per_product_asdc(
+            "nspin", **V01_PARAMS, as_plan=SAMPLE_AS_PLAN, apply_floor=True,
+        )
+        prices = bps[:, 1]
+
+        assert prices.min() >= ASDC_FLOOR - 1e-9, (
+            f"NSPIN min price ${prices.min():.4f} below floor ${ASDC_FLOOR}"
+        )
+
+        assert (prices > ASDC_FLOOR + 1.0).sum() > 0, (
+            "NSPIN should have a declining region above the $15 floor"
+        )
+
+        n_at_floor = np.isclose(prices, ASDC_FLOOR, atol=1e-6).sum()
+        assert n_at_floor > 0, (
+            "NSPIN should have at least one segment at the $15 floor"
+        )

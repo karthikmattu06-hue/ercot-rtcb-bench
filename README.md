@@ -36,7 +36,7 @@ See [`docs/dataset-card.md`](docs/dataset-card.md) for full documentation.
 
 ## Writing
 
-- [Post #1: What RTC+B Actually Changed — A Visual Walkthrough of the 6-D Action Space](https://substack.com/@karthik204653) (2026-05-14)
+- [Post #1: What RTC+B Actually Changed — A Visual Walkthrough of the 6-D Action Space](https://karthik204653.substack.com/p/what-rtcb-actually-changed-a-walkthrough) (2026-05-14)
 
 ## Repository structure
 

@@ -1,4 +1,4 @@
-<!-- Originally published at: https://substack.com/@karthik204653 -->
+<!-- Originally published at: https://karthik204653.substack.com/p/what-rtcb-actually-changed-a-walkthrough -->
 
 # What RTC+B Actually Changed: A Visual Walkthrough of the 6-D Action Space
 

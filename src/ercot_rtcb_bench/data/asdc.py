@@ -18,13 +18,44 @@ import time
 import zipfile
 from datetime import date
 from pathlib import Path
+from typing import Literal
 
+import numpy as np
 import pandas as pd
 import requests
+from scipy.stats import norm
 
 from ercot_rtcb_bench.data.schema import ASDCHourly, ASDCParameters, ASProduct
 
 logger = logging.getLogger(__name__)
+
+# ── NPRR1268 §4.4.12 disaggregation constants ────────────────────────────────
+
+MCL = 3000                  # Minimum Contingency Level, MW
+RUPCT = 0.90                # Reg-Up percentage
+RRSPCTMAX = 0.90            # Max RRS percentage
+ECRSPCTMAX = 0.30           # Max ECRS percentage
+ECRSMWMIN = 40              # Min ECRS, MW
+NSMWMIN = 10                # Min Non-Spin, MW
+
+# Per-product Max Demand Prices for the linear region (VOLL offsets)
+# Per NPRR1268 §4.4.12(6)(a) table.
+MAX_DEMAND_PRICE_OFFSETS = {
+    "regup": 4052,
+    "rrs":   2051,
+    "ecrs":  50,
+    "nspin": 0,
+}
+
+# Per-product Min Prices for the nonlinear slice-extraction boundaries
+# Per NPRR1268 §4.4.12(6)(b) table.
+MIN_PRICE = {
+    "regup": 250.0,
+    "rrs":   100.0,
+}
+
+# NPRR1269 ASDC floor on all upward ASDCs
+ASDC_FLOOR = 15.0  # $/MW-h
 
 # ── ERCOT MISAPP constants ────────────────────────────────────────────────────
 
@@ -467,3 +498,150 @@ def load_asdc_params(parquet_path: Path) -> list[ASDCParameters]:
     """Load ASDCParameters from Parquet and validate against schema."""
     df = pd.read_parquet(parquet_path)
     return [ASDCParameters(**row) for row in df.to_dict(orient="records")]
+
+
+# ── NPRR1268 §4.4.12 per-product ASDC disaggregation ─────────────────────────
+
+
+def _aordc(reserve_level: np.ndarray, mu: float, sigma: float, voll: float) -> np.ndarray:
+    """AORDC value at one or more reserve levels.
+
+    Per NPRR1268 §4.4.12(5)(b):
+        AORDC(R) = (1 - pnorm(R - 3000, μ*, σ*)) * VOLL
+    """
+    return (1 - norm.cdf(reserve_level - MCL, loc=mu, scale=sigma)) * voll
+
+
+def _mcl_quantities(rureq: float, rrsreq: float, ecrsreq: float) -> dict[str, float]:
+    """Allocate MCL=3000 MW across the four upward products.
+
+    Per NPRR1268 §4.4.12(6)(a), three cases. Returns dict with keys
+    ("regup", "rrs", "ecrs", "nspin"), values in MW that sum to MCL.
+    """
+    case1_sum = (RUPCT * rureq + ECRSPCTMAX * ecrsreq
+                 + RRSPCTMAX * rrsreq + NSMWMIN)
+    case2_sum = (RUPCT * rureq + RRSPCTMAX * rrsreq
+                 + ECRSMWMIN + NSMWMIN)
+
+    if case1_sum <= MCL:
+        # Case 1: each product takes its max%, Non-Spin fills remainder.
+        rumw   = RUPCT * rureq
+        ecrsmw = ECRSPCTMAX * ecrsreq
+        rrsmw  = RRSPCTMAX * rrsreq
+        nsmw   = MCL - rumw - rrsmw - ecrsmw
+    elif case2_sum > MCL:
+        # Case 2: ECRS and Non-Spin pinned at minimums; RRS absorbs.
+        rumw   = RUPCT * rureq
+        ecrsmw = ECRSMWMIN
+        rrsmw  = (RRSPCTMAX * rrsreq
+                  - (RRSPCTMAX * rrsreq + RUPCT * rureq
+                     - (MCL - ECRSMWMIN - NSMWMIN)))
+        nsmw   = NSMWMIN
+    else:
+        # Case 3: excess split equally between RRS and ECRS.
+        rumw   = RUPCT * rureq
+        excess = (RUPCT * rureq + RRSPCTMAX * rrsreq
+                  + ECRSPCTMAX * ecrsreq - (MCL - NSMWMIN))
+        rrsmw  = RRSPCTMAX * rrsreq  - 0.5 * excess
+        ecrsmw = ECRSPCTMAX * ecrsreq - 0.5 * excess
+        nsmw   = NSMWMIN
+
+    return {"regup": rumw, "rrs": rrsmw, "ecrs": ecrsmw, "nspin": nsmw}
+
+
+def _aordc_discretized(mu: float, sigma: float, voll: float,
+                       max_reserve_mw: int = 15000) -> np.ndarray:
+    """AORDC discretized in 1-MW increments per §4.4.12(5)(c).
+
+    Returns array of shape (N, 2): columns (reserve_level_mw, price_usd_per_mwh).
+    """
+    levels = np.arange(MCL, max_reserve_mw + 1, dtype=float)
+    prices = _aordc(levels, mu, sigma, voll)
+    mask = prices > 0.01
+    return np.column_stack([levels[mask], prices[mask]])
+
+
+def reconstruct_per_product_asdc(
+    product: Literal["regup", "regdn", "rrs", "ecrs", "nspin"],
+    mu: float,
+    sigma: float,
+    voll: float,
+    as_plan: dict[str, float],
+    apply_floor: bool = True,
+) -> np.ndarray:
+    """Reconstruct one per-product ASDC per NPRR1268 §4.4.12 + NPRR1269 floor.
+
+    Parameters
+    ----------
+    product : one of "regup", "regdn", "rrs", "ecrs", "nspin"
+    mu, sigma, voll : AORDC parameters (from ASDCParameters table).
+    as_plan : AS Plan quantities (MW) with keys
+        "rureq", "rrsreq", "ecrsreq", "regdnreq", "nspinreq".
+    apply_floor : if True, apply NPRR1269 $15/MW-h floor (default True).
+
+    Returns
+    -------
+    Array of shape (N, 2): columns (cumulative_mw, price_usd_per_mwh).
+    """
+    if product == "regdn":
+        return np.array([
+            [0.0,                  voll],
+            [as_plan["regdnreq"],  voll],
+        ])
+
+    if product not in ("regup", "rrs", "ecrs", "nspin"):
+        raise ValueError(f"Unknown product: {product}")
+
+    mcl_q = _mcl_quantities(
+        rureq=as_plan["rureq"],
+        rrsreq=as_plan["rrsreq"],
+        ecrsreq=as_plan["ecrsreq"],
+    )
+    linear_mw    = mcl_q[product]
+    linear_price = voll + MAX_DEMAND_PRICE_OFFSETS[product]
+
+    aordc_pts    = _aordc_discretized(mu, sigma, voll)
+    aordc_prices = aordc_pts[:, 1]
+
+    ru_mask        = aordc_prices >= MIN_PRICE["regup"]
+    rrs_mask       = ((aordc_prices < MIN_PRICE["regup"])
+                      & (aordc_prices >= MIN_PRICE["rrs"]))
+    remaining_mask = aordc_prices < MIN_PRICE["rrs"]
+
+    remaining = aordc_pts[remaining_mask]
+    ecrs_target_mw = as_plan["ecrsreq"] - mcl_q["ecrs"]
+    ecrs_segs, nspin_segs = [], []
+    ecrs_assigned = 0.0
+    assign_ecrs_next = True
+    for i in range(len(remaining)):
+        if assign_ecrs_next and ecrs_assigned < ecrs_target_mw:
+            ecrs_segs.append(remaining[i])
+            ecrs_assigned += 1.0
+            assign_ecrs_next = False
+        else:
+            nspin_segs.append(remaining[i])
+            assign_ecrs_next = (ecrs_assigned < ecrs_target_mw)
+
+    nonlinear_by_product = {
+        "regup": aordc_pts[ru_mask],
+        "rrs":   aordc_pts[rrs_mask],
+        "ecrs":  np.array(ecrs_segs) if ecrs_segs else np.empty((0, 2)),
+        "nspin": np.array(nspin_segs) if nspin_segs else np.empty((0, 2)),
+    }
+
+    nonlinear_pts = nonlinear_by_product[product]
+
+    cum_mw = [0.0, linear_mw]
+    price  = [linear_price, linear_price]
+    cur_mw = linear_mw
+    for i in range(len(nonlinear_pts)):
+        cur_mw += 1.0
+        cum_mw.append(cur_mw)
+        price.append(float(nonlinear_pts[i, 1]))
+
+    breakpoints = np.column_stack([cum_mw, price])
+
+    if apply_floor:
+        breakpoints[:, 1] = np.maximum(breakpoints[:, 1], ASDC_FLOOR)
+
+    return breakpoints

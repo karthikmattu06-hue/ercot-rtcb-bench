@@ -319,21 +319,24 @@ May 10, 2026 using API-fetched supplements (RT LMP, DAM SPP/AS, wind, solar, loa
 Load for recent dates (Apr 16 – May 10) uses the active ERCOT 7-day forecast model
 as a proxy for post-settlement actuals (settlement lag ~60 days).
 
-**Backtest** (Apr 20–26, 2026 primary panel; see `docs/backtest_w3b.md`):
+**Backtest** (Apr 20–26, 2026 primary panel, CANONICAL_SEED=42, per-day seeding;
+see `docs/backtest_w3b.md` and `docs/decisions/0007-w3b-bootstrap-forecaster.md`):
 
 | Series | Mean Bias | CRPS | 80% Coverage |
 |--------|-----------|------|--------------|
-| LMP | −12.55 $/MWh | 13.50 | 60.2% |
-| MCPC RegUp | +0.86 $/MW | 3.46 | 55.5% |
-| MCPC RegDn | +0.89 $/MW | 1.29 | 48.9% |
-| MCPC RRS | +1.34 $/MW | 3.28 | 52.8% |
-| MCPC ECRS | +1.02 $/MW | 4.01 | 52.7% |
-| MCPC NSPIN | +0.80 $/MW | 8.93 | 47.2% |
+| LMP | −6.79 $/MWh | 20.11 | 86.6% |
+| MCPC RegUp | +0.90 $/MW | 3.44 | 55.3% |
+| MCPC RegDn | +0.77 $/MW | 1.28 | 51.3% |
+| MCPC RRS | +1.38 $/MW | 3.29 | 55.6% |
+| MCPC ECRS | +1.10 $/MW | 4.07 | 51.5% |
+| MCPC NSPIN | +0.77 $/MW | 8.72 | 48.0% |
 
-Coverage shortfall (47–56% vs 60% target) reflects a small, seasonally concentrated
-analog pool (101–107 days as of late April). LMP negative bias driven by an Apr 25
-price spike ($95/MWh realized, $61 DAM) not well-represented in the pool. Both
-effects are expected to improve as the pool grows through summer 2026.
+This is a characterized v0.1 baseline. LMP energy is well-calibrated (~87% 80%
+coverage); the −6.79 $/MWh directional bias is a structural artifact of the frozen
+Apr 20–26 backtest panel's winter-dominated pool, not a property of the live forecaster.
+AS scenarios are near-deterministic (51–56% coverage): AS under-dispersion reflects a
+mechanism incompatibility between Silverman-rule jitter and the zero-bounded AS price
+distribution, not pool depth — it does not improve as the pool grows. See ADR 0007.
 
 Run with:
 ```python

@@ -70,6 +70,7 @@ def kmedoids(
     k: int = DEFAULT_K,
     max_iter: int = MAX_PAM_ITER,
     random_seed: int = 42,
+    scenario_weights: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """PAM k-medoids on [N × 6 × 288] scenarios.
 
@@ -82,14 +83,19 @@ def kmedoids(
         Maximum PAM swap iterations.
     random_seed : int
         Seed for initial medoid selection.
+    scenario_weights : np.ndarray | None, shape [N]
+        Per-scenario importance weights (e.g. recency weights). When provided,
+        cluster probabilities are computed as the sum of weights in each cluster
+        rather than raw counts. Weights need not be normalized; they are
+        normalized internally. If None, uniform weights (count/N) are used.
 
     Returns
     -------
     medoid_scenarios : np.ndarray, shape [K, 6, 288]
         The K representative scenarios (actual scenarios, not centroids).
     probabilities : np.ndarray, shape [K]
-        Cluster weight = fraction of raw scenarios assigned to each medoid.
-        Sums to 1.0.
+        Cluster weight = recency-weighted mass / total mass (or count/N if no
+        scenario_weights). Sums to 1.0.
     assignments : np.ndarray, shape [N]
         Cluster index (0..K-1) for each raw scenario.
     """
@@ -97,7 +103,10 @@ def kmedoids(
 
     if n <= k:
         logger.info("N=%d ≤ K=%d: returning all scenarios with uniform weights", n, k)
-        probs = np.full(n, 1.0 / n)
+        if scenario_weights is not None:
+            probs = scenario_weights / scenario_weights.sum()
+        else:
+            probs = np.full(n, 1.0 / n)
         return scenarios.copy(), probs, np.arange(n)
 
     features = _normalize_features(scenarios)      # [N, D]
@@ -146,11 +155,18 @@ def kmedoids(
     # Final assignment
     assignments = dist_mat[:, medoid_idx].argmin(axis=1)  # [N]
 
-    # Compute probabilities as cluster sizes / N
-    probs = np.array(
-        [float((assignments == ki).sum()) / n for ki in range(k)],
-        dtype=np.float64,
-    )
+    # Compute probabilities: recency-weighted mass per cluster, or raw count / N
+    if scenario_weights is not None:
+        w = scenario_weights / scenario_weights.sum()
+        probs = np.array(
+            [float(w[assignments == ki].sum()) for ki in range(k)],
+            dtype=np.float64,
+        )
+    else:
+        probs = np.array(
+            [float((assignments == ki).sum()) / n for ki in range(k)],
+            dtype=np.float64,
+        )
 
     # Handle degenerate empty clusters (rare; give them zero weight)
     probs /= probs.sum()
@@ -191,6 +207,7 @@ def reduce_scenarios(
     raw_scenarios: np.ndarray,
     k: int = DEFAULT_K,
     random_seed: int = 42,
+    scenario_weights: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """High-level wrapper: reduce [N × 6 × 288] → [K × 6 × 288] + probabilities.
 
@@ -200,6 +217,9 @@ def reduce_scenarios(
     k : int
         Target number of representative scenarios.
     random_seed : int
+    scenario_weights : np.ndarray | None, shape [N]
+        Per-scenario importance weights (e.g. recency weights). Passed through to
+        kmedoids for probability computation. See kmedoids() docstring.
 
     Returns
     -------
@@ -209,5 +229,7 @@ def reduce_scenarios(
     if raw_scenarios.shape[0] == 0:
         raise ValueError("No raw scenarios to reduce")
 
-    medoid_scenarios, probs, _ = kmedoids(raw_scenarios, k=k, random_seed=random_seed)
+    medoid_scenarios, probs, _ = kmedoids(
+        raw_scenarios, k=k, random_seed=random_seed, scenario_weights=scenario_weights
+    )
     return medoid_scenarios, probs

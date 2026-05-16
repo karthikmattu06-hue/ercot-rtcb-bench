@@ -287,9 +287,9 @@ This is the complete observable AS action space for a BESS under RTC+B.
 
 ---
 
-## Baselines
+## Baselines and Algorithms
 
-The repository ships two LP baselines (Week 2 addition):
+### Decision-support baselines
 
 | Baseline | Module | Description |
 |----------|--------|-------------|
@@ -304,6 +304,44 @@ The repository ships two LP baselines (Week 2 addition):
 | Point forecast (DAM) | $136,100 | 76.3% |
 
 Run with: `python scripts/smoke_milp.py --v01-dir path/to/v0.1`
+
+### W3-B Bootstrap Probabilistic Forecaster
+
+`src/ercot_rtcb_bench/forecaster/` — Generates a `ScenarioTree` (K=15 joint price
+trajectories across all 6 series at 5-min resolution) for one operating day.
+
+**Method**: Analog-day matching on z-normalized net-load profile + whole-day vector
+block residual bootstrap + k-medoids scenario reduction. Point forecast = DAM prices.
+Pool start: Jan 9, 2026 (post-MIP-tighten). See `docs/decisions/0007-w3b-bootstrap-forecaster.md`.
+
+**Forecaster dataset**: `data/processed/forecaster/` extends the v0.1 dataset through
+May 10, 2026 using API-fetched supplements (RT LMP, DAM SPP/AS, wind, solar, load).
+Load for recent dates (Apr 16 – May 10) uses the active ERCOT 7-day forecast model
+as a proxy for post-settlement actuals (settlement lag ~60 days).
+
+**Backtest** (Apr 20–26, 2026 primary panel; see `docs/backtest_w3b.md`):
+
+| Series | Mean Bias | CRPS | 80% Coverage |
+|--------|-----------|------|--------------|
+| LMP | −12.55 $/MWh | 13.50 | 60.2% |
+| MCPC RegUp | +0.86 $/MW | 3.46 | 55.5% |
+| MCPC RegDn | +0.89 $/MW | 1.29 | 48.9% |
+| MCPC RRS | +1.34 $/MW | 3.28 | 52.8% |
+| MCPC ECRS | +1.02 $/MW | 4.01 | 52.7% |
+| MCPC NSPIN | +0.80 $/MW | 8.93 | 47.2% |
+
+Coverage shortfall (47–56% vs 60% target) reflects a small, seasonally concentrated
+analog pool (101–107 days as of late April). LMP negative bias driven by an Apr 25
+price spike ($95/MWh realized, $61 DAM) not well-represented in the pool. Both
+effects are expected to improve as the pool grows through summer 2026.
+
+Run with:
+```python
+from ercot_rtcb_bench.forecaster import BootstrapForecaster
+from datetime import date
+tree = BootstrapForecaster().forecast(date(2026, 4, 20))
+# tree.scenarios: [15, 6, 288], tree.probabilities: [15]
+```
 
 ---
 

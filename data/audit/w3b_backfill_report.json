@@ -1,0 +1,450 @@
+{
+  "reports": [
+    {
+      "month": "2026-01",
+      "rt": {
+        "lmp": {
+          "total_intervals": 8928,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "mcpc_regup": {
+          "total_intervals": 8928,
+          "nan_count": 10,
+          "nan_pct": 0.11
+        },
+        "mcpc_regdn": {
+          "total_intervals": 8928,
+          "nan_count": 10,
+          "nan_pct": 0.11
+        },
+        "mcpc_rrs": {
+          "total_intervals": 8928,
+          "nan_count": 10,
+          "nan_pct": 0.11
+        },
+        "mcpc_ecrs": {
+          "total_intervals": 8928,
+          "nan_count": 10,
+          "nan_pct": 0.11
+        },
+        "mcpc_nspin": {
+          "total_intervals": 8928,
+          "nan_count": 10,
+          "nan_pct": 0.11
+        }
+      },
+      "dam": {
+        "dam_spp": {
+          "total_hours": 744,
+          "nan_count": 6,
+          "nan_pct": 0.81
+        },
+        "dam_mcpc_regup": {
+          "total_hours": 744,
+          "nan_count": 6,
+          "nan_pct": 0.81
+        },
+        "dam_mcpc_regdn": {
+          "total_hours": 744,
+          "nan_count": 6,
+          "nan_pct": 0.81
+        },
+        "dam_mcpc_rrs": {
+          "total_hours": 744,
+          "nan_count": 6,
+          "nan_pct": 0.81
+        },
+        "dam_mcpc_ecrs": {
+          "total_hours": 744,
+          "nan_count": 6,
+          "nan_pct": 0.81
+        },
+        "dam_mcpc_nspin": {
+          "total_hours": 744,
+          "nan_count": 6,
+          "nan_pct": 0.81
+        }
+      },
+      "sys": {
+        "total_load_mw": {
+          "total_intervals": 8928,
+          "nan_count": 72,
+          "nan_pct": 0.81
+        },
+        "wind_actual_mw": {
+          "total_intervals": 8928,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "solar_actual_mw": {
+          "total_intervals": 8928,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "net_load_mw": {
+          "total_intervals": 8928,
+          "nan_count": 72,
+          "nan_pct": 0.81
+        }
+      }
+    },
+    {
+      "month": "2026-02",
+      "rt": {
+        "lmp": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "mcpc_regup": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "mcpc_regdn": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "mcpc_rrs": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "mcpc_ecrs": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "mcpc_nspin": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        }
+      },
+      "dam": {
+        "dam_spp": {
+          "total_hours": 672,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_regup": {
+          "total_hours": 672,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_regdn": {
+          "total_hours": 672,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_rrs": {
+          "total_hours": 672,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_ecrs": {
+          "total_hours": 672,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_nspin": {
+          "total_hours": 672,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        }
+      },
+      "sys": {
+        "total_load_mw": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "wind_actual_mw": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "solar_actual_mw": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "net_load_mw": {
+          "total_intervals": 8064,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        }
+      }
+    },
+    {
+      "month": "2026-03",
+      "rt": {
+        "lmp": {
+          "total_intervals": 8928,
+          "nan_count": 9,
+          "nan_pct": 0.1
+        },
+        "mcpc_regup": {
+          "total_intervals": 8928,
+          "nan_count": 311,
+          "nan_pct": 3.48
+        },
+        "mcpc_regdn": {
+          "total_intervals": 8928,
+          "nan_count": 311,
+          "nan_pct": 3.48
+        },
+        "mcpc_rrs": {
+          "total_intervals": 8928,
+          "nan_count": 311,
+          "nan_pct": 3.48
+        },
+        "mcpc_ecrs": {
+          "total_intervals": 8928,
+          "nan_count": 311,
+          "nan_pct": 3.48
+        },
+        "mcpc_nspin": {
+          "total_intervals": 8928,
+          "nan_count": 311,
+          "nan_pct": 3.48
+        }
+      },
+      "dam": {
+        "dam_spp": {
+          "total_hours": 744,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_regup": {
+          "total_hours": 744,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_regdn": {
+          "total_hours": 744,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_rrs": {
+          "total_hours": 744,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_ecrs": {
+          "total_hours": 744,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_nspin": {
+          "total_hours": 744,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        }
+      },
+      "sys": {
+        "total_load_mw": {
+          "total_intervals": 8928,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "wind_actual_mw": {
+          "total_intervals": 8928,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "solar_actual_mw": {
+          "total_intervals": 8928,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "net_load_mw": {
+          "total_intervals": 8928,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        }
+      }
+    },
+    {
+      "month": "2026-04",
+      "rt": {
+        "lmp": {
+          "total_intervals": 8640,
+          "nan_count": 1,
+          "nan_pct": 0.01
+        },
+        "mcpc_regup": {
+          "total_intervals": 8640,
+          "nan_count": 9,
+          "nan_pct": 0.1
+        },
+        "mcpc_regdn": {
+          "total_intervals": 8640,
+          "nan_count": 9,
+          "nan_pct": 0.1
+        },
+        "mcpc_rrs": {
+          "total_intervals": 8640,
+          "nan_count": 9,
+          "nan_pct": 0.1
+        },
+        "mcpc_ecrs": {
+          "total_intervals": 8640,
+          "nan_count": 9,
+          "nan_pct": 0.1
+        },
+        "mcpc_nspin": {
+          "total_intervals": 8640,
+          "nan_count": 9,
+          "nan_pct": 0.1
+        }
+      },
+      "dam": {
+        "dam_spp": {
+          "total_hours": 720,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_regup": {
+          "total_hours": 720,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_regdn": {
+          "total_hours": 720,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_rrs": {
+          "total_hours": 720,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_ecrs": {
+          "total_hours": 720,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "dam_mcpc_nspin": {
+          "total_hours": 720,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        }
+      },
+      "sys": {
+        "total_load_mw": {
+          "total_intervals": 8640,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "wind_actual_mw": {
+          "total_intervals": 8640,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "solar_actual_mw": {
+          "total_intervals": 8640,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        },
+        "net_load_mw": {
+          "total_intervals": 8640,
+          "nan_count": 0,
+          "nan_pct": 0.0
+        }
+      }
+    },
+    {
+      "month": "2026-05",
+      "rt": {
+        "lmp": {
+          "total_intervals": 8928,
+          "nan_count": 6036,
+          "nan_pct": 67.61
+        },
+        "mcpc_regup": {
+          "total_intervals": 8928,
+          "nan_count": 6138,
+          "nan_pct": 68.75
+        },
+        "mcpc_regdn": {
+          "total_intervals": 8928,
+          "nan_count": 6138,
+          "nan_pct": 68.75
+        },
+        "mcpc_rrs": {
+          "total_intervals": 8928,
+          "nan_count": 6138,
+          "nan_pct": 68.75
+        },
+        "mcpc_ecrs": {
+          "total_intervals": 8928,
+          "nan_count": 6138,
+          "nan_pct": 68.75
+        },
+        "mcpc_nspin": {
+          "total_intervals": 8928,
+          "nan_count": 6138,
+          "nan_pct": 68.75
+        }
+      },
+      "dam": {
+        "dam_spp": {
+          "total_hours": 744,
+          "nan_count": 528,
+          "nan_pct": 70.97
+        },
+        "dam_mcpc_regup": {
+          "total_hours": 744,
+          "nan_count": 504,
+          "nan_pct": 67.74
+        },
+        "dam_mcpc_regdn": {
+          "total_hours": 744,
+          "nan_count": 504,
+          "nan_pct": 67.74
+        },
+        "dam_mcpc_rrs": {
+          "total_hours": 744,
+          "nan_count": 504,
+          "nan_pct": 67.74
+        },
+        "dam_mcpc_ecrs": {
+          "total_hours": 744,
+          "nan_count": 504,
+          "nan_pct": 67.74
+        },
+        "dam_mcpc_nspin": {
+          "total_hours": 744,
+          "nan_count": 504,
+          "nan_pct": 67.74
+        }
+      },
+      "sys": {
+        "total_load_mw": {
+          "total_intervals": 8928,
+          "nan_count": 3983,
+          "nan_pct": 44.61
+        },
+        "wind_actual_mw": {
+          "total_intervals": 8928,
+          "nan_count": 6000,
+          "nan_pct": 67.2
+        },
+        "solar_actual_mw": {
+          "total_intervals": 8928,
+          "nan_count": 6000,
+          "nan_pct": 67.2
+        },
+        "net_load_mw": {
+          "total_intervals": 8928,
+          "nan_count": 3983,
+          "nan_pct": 44.61
+        }
+      }
+    }
+  ],
+  "gate_passed": true
+}

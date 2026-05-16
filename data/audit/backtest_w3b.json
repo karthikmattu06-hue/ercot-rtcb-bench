@@ -1,0 +1,416 @@
+{
+  "all_results": [
+    {
+      "panel": "Apr 20-26 2026 (primary)",
+      "days": [
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26"
+      ],
+      "day_results": [
+        {
+          "day": "2026-04-20",
+          "K": 15,
+          "pool_size": 101,
+          "matched_count": 40,
+          "day_type_relaxed": false,
+          "lmp": {
+            "bias": -15.1919,
+            "crps": 18.634,
+            "coverage_80": 0.2535,
+            "realized_mean": 46.097,
+            "forecast_mean": 30.9052
+          },
+          "mcpc_regup": {
+            "bias": -2.2638,
+            "crps": 3.5545,
+            "coverage_80": 0.3833,
+            "realized_mean": 3.8355,
+            "forecast_mean": 1.5677
+          },
+          "mcpc_regdn": {
+            "bias": -0.3872,
+            "crps": 0.8611,
+            "coverage_80": 0.3693,
+            "realized_mean": 1.1435,
+            "forecast_mean": 0.7543
+          },
+          "mcpc_rrs": {
+            "bias": -1.5401,
+            "crps": 3.3459,
+            "coverage_80": 0.2753,
+            "realized_mean": 2.7394,
+            "forecast_mean": 1.1953
+          },
+          "mcpc_ecrs": {
+            "bias": -2.2198,
+            "crps": 4.1562,
+            "coverage_80": 0.2787,
+            "realized_mean": 3.6474,
+            "forecast_mean": 1.423
+          },
+          "mcpc_nspin": {
+            "bias": -2.6568,
+            "crps": 5.3595,
+            "coverage_80": 0.23,
+            "realized_mean": 4.8143,
+            "forecast_mean": 2.1529
+          }
+        },
+        {
+          "day": "2026-04-21",
+          "K": 15,
+          "pool_size": 102,
+          "matched_count": 40,
+          "day_type_relaxed": false,
+          "lmp": {
+            "bias": -12.8286,
+            "crps": 6.6106,
+            "coverage_80": 0.7708,
+            "realized_mean": 40.2282,
+            "forecast_mean": 27.3996
+          },
+          "mcpc_regup": {
+            "bias": 0.9142,
+            "crps": 1.8621,
+            "coverage_80": 0.5312,
+            "realized_mean": 1.6636,
+            "forecast_mean": 2.5778
+          },
+          "mcpc_regdn": {
+            "bias": 0.4189,
+            "crps": 0.729,
+            "coverage_80": 0.5694,
+            "realized_mean": 0.8028,
+            "forecast_mean": 1.2218
+          },
+          "mcpc_rrs": {
+            "bias": 1.217,
+            "crps": 1.715,
+            "coverage_80": 0.4965,
+            "realized_mean": 0.6808,
+            "forecast_mean": 1.8978
+          },
+          "mcpc_ecrs": {
+            "bias": 1.6299,
+            "crps": 2.5548,
+            "coverage_80": 0.4688,
+            "realized_mean": 1.0757,
+            "forecast_mean": 2.7056
+          },
+          "mcpc_nspin": {
+            "bias": 1.0177,
+            "crps": 4.7718,
+            "coverage_80": 0.1736,
+            "realized_mean": 3.5672,
+            "forecast_mean": 4.585
+          }
+        },
+        {
+          "day": "2026-04-22",
+          "K": 15,
+          "pool_size": 103,
+          "matched_count": 40,
+          "day_type_relaxed": false,
+          "lmp": {
+            "bias": -13.7403,
+            "crps": 5.0506,
+            "coverage_80": 0.9549,
+            "realized_mean": 23.7372,
+            "forecast_mean": 9.9969
+          },
+          "mcpc_regup": {
+            "bias": 0.768,
+            "crps": 0.9344,
+            "coverage_80": 0.6458,
+            "realized_mean": 0.9842,
+            "forecast_mean": 1.7523
+          },
+          "mcpc_regdn": {
+            "bias": 0.3321,
+            "crps": 0.3908,
+            "coverage_80": 0.7014,
+            "realized_mean": 0.6859,
+            "forecast_mean": 1.018
+          },
+          "mcpc_rrs": {
+            "bias": 1.0571,
+            "crps": 1.0092,
+            "coverage_80": 0.4375,
+            "realized_mean": 0.186,
+            "forecast_mean": 1.2432
+          },
+          "mcpc_ecrs": {
+            "bias": 1.451,
+            "crps": 1.3381,
+            "coverage_80": 0.4896,
+            "realized_mean": 0.2562,
+            "forecast_mean": 1.7071
+          },
+          "mcpc_nspin": {
+            "bias": 1.1864,
+            "crps": 2.6863,
+            "coverage_80": 0.441,
+            "realized_mean": 1.4166,
+            "forecast_mean": 2.603
+          }
+        },
+        {
+          "day": "2026-04-23",
+          "K": 15,
+          "pool_size": 104,
+          "matched_count": 40,
+          "day_type_relaxed": false,
+          "lmp": {
+            "bias": -3.106,
+            "crps": 3.0923,
+            "coverage_80": 0.8611,
+            "realized_mean": 22.4319,
+            "forecast_mean": 19.3259
+          },
+          "mcpc_regup": {
+            "bias": 0.2231,
+            "crps": 0.5159,
+            "coverage_80": 0.8333,
+            "realized_mean": 0.7739,
+            "forecast_mean": 0.997
+          },
+          "mcpc_regdn": {
+            "bias": 0.268,
+            "crps": 0.3815,
+            "coverage_80": 0.7639,
+            "realized_mean": 0.5822,
+            "forecast_mean": 0.8502
+          },
+          "mcpc_rrs": {
+            "bias": 0.4367,
+            "crps": 0.3079,
+            "coverage_80": 0.809,
+            "realized_mean": 0.0952,
+            "forecast_mean": 0.532
+          },
+          "mcpc_ecrs": {
+            "bias": 0.5109,
+            "crps": 0.4103,
+            "coverage_80": 0.8611,
+            "realized_mean": 0.1427,
+            "forecast_mean": 0.6536
+          },
+          "mcpc_nspin": {
+            "bias": 1.0859,
+            "crps": 1.4006,
+            "coverage_80": 0.7431,
+            "realized_mean": 0.7209,
+            "forecast_mean": 1.8068
+          }
+        },
+        {
+          "day": "2026-04-24",
+          "K": 15,
+          "pool_size": 105,
+          "matched_count": 40,
+          "day_type_relaxed": false,
+          "lmp": {
+            "bias": 1.1159,
+            "crps": 11.9916,
+            "coverage_80": 0.2431,
+            "realized_mean": 37.7111,
+            "forecast_mean": 38.8269
+          },
+          "mcpc_regup": {
+            "bias": -4.9249,
+            "crps": 5.5504,
+            "coverage_80": 0.4375,
+            "realized_mean": 6.2392,
+            "forecast_mean": 1.3144
+          },
+          "mcpc_regdn": {
+            "bias": -0.155,
+            "crps": 2.5458,
+            "coverage_80": 0.3611,
+            "realized_mean": 2.7554,
+            "forecast_mean": 2.6004
+          },
+          "mcpc_rrs": {
+            "bias": -3.703,
+            "crps": 4.5221,
+            "coverage_80": 0.7153,
+            "realized_mean": 4.5154,
+            "forecast_mean": 0.8124
+          },
+          "mcpc_ecrs": {
+            "bias": -5.9624,
+            "crps": 7.0337,
+            "coverage_80": 0.6667,
+            "realized_mean": 7.0999,
+            "forecast_mean": 1.1375
+          },
+          "mcpc_nspin": {
+            "bias": -17.3779,
+            "crps": 20.4675,
+            "coverage_80": 0.7708,
+            "realized_mean": 20.6705,
+            "forecast_mean": 3.2926
+          }
+        },
+        {
+          "day": "2026-04-25",
+          "K": 15,
+          "pool_size": 106,
+          "matched_count": 30,
+          "day_type_relaxed": false,
+          "lmp": {
+            "bias": -41.4322,
+            "crps": 42.921,
+            "coverage_80": 0.4062,
+            "realized_mean": 95.2916,
+            "forecast_mean": 53.8593
+          },
+          "mcpc_regup": {
+            "bias": 9.5136,
+            "crps": 10.1655,
+            "coverage_80": 0.316,
+            "realized_mean": 1.5578,
+            "forecast_mean": 11.0714
+          },
+          "mcpc_regdn": {
+            "bias": 3.6681,
+            "crps": 2.7494,
+            "coverage_80": 0.2465,
+            "realized_mean": 0.888,
+            "forecast_mean": 4.5561
+          },
+          "mcpc_rrs": {
+            "bias": 9.8415,
+            "crps": 10.3586,
+            "coverage_80": 0.2535,
+            "realized_mean": 0.5452,
+            "forecast_mean": 10.3868
+          },
+          "mcpc_ecrs": {
+            "bias": 9.6011,
+            "crps": 10.8347,
+            "coverage_80": 0.3924,
+            "realized_mean": 0.9352,
+            "forecast_mean": 10.5363
+          },
+          "mcpc_nspin": {
+            "bias": 17.2517,
+            "crps": 23.6419,
+            "coverage_80": 0.2674,
+            "realized_mean": 4.2622,
+            "forecast_mean": 21.5138
+          }
+        },
+        {
+          "day": "2026-04-26",
+          "K": 15,
+          "pool_size": 107,
+          "matched_count": 31,
+          "day_type_relaxed": false,
+          "lmp": {
+            "bias": -2.6787,
+            "crps": 6.1987,
+            "coverage_80": 0.7222,
+            "realized_mean": 31.5484,
+            "forecast_mean": 28.8697
+          },
+          "mcpc_regup": {
+            "bias": 1.7927,
+            "crps": 1.6031,
+            "coverage_80": 0.7396,
+            "realized_mean": 0.7375,
+            "forecast_mean": 2.5302
+          },
+          "mcpc_regdn": {
+            "bias": 2.091,
+            "crps": 1.3522,
+            "coverage_80": 0.4097,
+            "realized_mean": 0.3568,
+            "forecast_mean": 2.4478
+          },
+          "mcpc_rrs": {
+            "bias": 2.092,
+            "crps": 1.7078,
+            "coverage_80": 0.7083,
+            "realized_mean": 0.0613,
+            "forecast_mean": 2.1533
+          },
+          "mcpc_ecrs": {
+            "bias": 2.1011,
+            "crps": 1.7189,
+            "coverage_80": 0.5312,
+            "realized_mean": 0.0932,
+            "forecast_mean": 2.1944
+          },
+          "mcpc_nspin": {
+            "bias": 5.0551,
+            "crps": 4.1683,
+            "coverage_80": 0.6771,
+            "realized_mean": 0.462,
+            "forecast_mean": 5.5172
+          }
+        }
+      ],
+      "summary": {
+        "lmp": {
+          "mean_bias": -12.5517,
+          "std_bias": 13.1803,
+          "mean_crps": 13.4998,
+          "coverage_80_mean": 0.6017,
+          "n_days": 7
+        },
+        "mcpc_regup": {
+          "mean_bias": 0.8604,
+          "std_bias": 4.1299,
+          "mean_crps": 3.4551,
+          "coverage_80_mean": 0.5552,
+          "n_days": 7
+        },
+        "mcpc_regdn": {
+          "mean_bias": 0.8908,
+          "std_bias": 1.3524,
+          "mean_crps": 1.2871,
+          "coverage_80_mean": 0.4888,
+          "n_days": 7
+        },
+        "mcpc_rrs": {
+          "mean_bias": 1.343,
+          "std_bias": 3.9184,
+          "mean_crps": 3.2809,
+          "coverage_80_mean": 0.5279,
+          "n_days": 7
+        },
+        "mcpc_ecrs": {
+          "mean_bias": 1.016,
+          "std_bias": 4.3895,
+          "mean_crps": 4.0067,
+          "coverage_80_mean": 0.5269,
+          "n_days": 7
+        },
+        "mcpc_nspin": {
+          "mean_bias": 0.7946,
+          "std_bias": 9.4976,
+          "mean_crps": 8.928,
+          "coverage_80_mean": 0.4719,
+          "n_days": 7
+        }
+      }
+    }
+  ],
+  "gate_passed": false,
+  "gate_issues": [
+    "[Apr 20-26 2026 (primary)] lmp: |bias|=12.552 exceeds threshold 5.0",
+    "[Apr 20-26 2026 (primary)] mcpc_regup: 80% coverage=55.5% < 60% threshold",
+    "[Apr 20-26 2026 (primary)] mcpc_regdn: 80% coverage=48.9% < 60% threshold",
+    "[Apr 20-26 2026 (primary)] mcpc_rrs: |bias|=1.343 exceeds threshold 0.5",
+    "[Apr 20-26 2026 (primary)] mcpc_rrs: 80% coverage=52.8% < 60% threshold",
+    "[Apr 20-26 2026 (primary)] mcpc_ecrs: |bias|=1.016 exceeds threshold 0.5",
+    "[Apr 20-26 2026 (primary)] mcpc_ecrs: 80% coverage=52.7% < 60% threshold",
+    "[Apr 20-26 2026 (primary)] mcpc_nspin: 80% coverage=47.2% < 60% threshold"
+  ]
+}

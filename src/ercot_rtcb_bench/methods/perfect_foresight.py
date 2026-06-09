@@ -1,4 +1,4 @@
-"""Perfect-foresight BESS MILP baseline (Task 4).
+"""Perfect-foresight BESS LP baseline (Task 4).
 
 Optimizes BESS dispatch over a price window with full knowledge of all
 future RT clearing prices (LMP + AS MCPCs). Provides an upper bound on
@@ -49,6 +49,7 @@ def perfect_foresight(
     params: BESSParams,
     prices: pd.DataFrame,
     solver_kwargs: dict | None = None,
+    terminal_lmp: float = 0.0,
 ) -> PerfectForesightResult:
     """Run perfect-foresight LP optimization.
 
@@ -109,6 +110,9 @@ def perfect_foresight(
     c_obj[i_rrs: i_rrs + T] = -mcpc_rrs * dt
     c_obj[i_ecrs: i_ecrs + T] = -mcpc_ecrs * dt
     c_obj[i_ns: i_ns + T] = -mcpc_ns * dt
+    # Terminal value: +terminal_lmp × s_T (index i_s + T is s_T)
+    if terminal_lmp != 0.0:
+        c_obj[i_s + T] -= terminal_lmp
 
     # ── Equality constraints: SoC dynamics ───────────────────────────────────
     # s_{t+1} - s_t + dt * d_t - dt * rte * c_t = 0  for t = 0..T-1

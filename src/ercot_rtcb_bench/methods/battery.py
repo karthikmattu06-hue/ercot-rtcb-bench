@@ -1,4 +1,4 @@
-"""BESS physical model parameters (Task 4 — MILP baseline)."""
+"""BESS physical model parameters (Task 4 — LP baseline)."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ DT_HOURS = 5 / 60  # 5-minute SCED interval in hours
 
 @dataclass
 class BESSParams:
-    """Physical parameters for one BESS resource used in the MILP formulation.
+    """Physical parameters for one BESS resource used in the LP formulation.
 
     All power quantities in MW; energy in MWh; SoC is fractional [0, 1].
     """

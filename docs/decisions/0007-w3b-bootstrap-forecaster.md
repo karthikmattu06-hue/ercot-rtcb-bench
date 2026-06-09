@@ -9,7 +9,7 @@
 ## Context
 
 W3-B requires a probabilistic price forecaster to provide the scenario input for
-the stochastic MILP (W3-C) and DFL baseline (W3-D) battery bidding algorithms.
+the stochastic LP (W3-C) and DFL baseline (W3-D) battery bidding algorithms.
 The forecaster must produce a `ScenarioTree` — a set of K joint price trajectories
 across 6 price series (LMP + 5 AS MCPCs) at 5-minute resolution for one operating
 day — along with probability weights.
@@ -102,7 +102,7 @@ seed=42, per-day seeding; see W3-B-repro section).
 **Feature space**: [N, 6×288] array; per-series z-normalized before Euclidean
 distance. Weights each series equally regardless of price-scale differences.
 
-**K=15**: Largest K where the MILP (W3-C) remains tractable (< 60s solve target).
+**K=15**: Largest K where the stochastic LP (W3-C) remains tractable (< 60s solve target).
 
 **Probability weights**: Recency-weighted mass fraction of raw scenarios assigned
 to each medoid.
@@ -111,7 +111,7 @@ to each medoid.
 
 The `ScenarioTree` dataclass is the shared interface between:
 - **W3-B** (producer): Bootstrap forecaster
-- **W3-C** (consumer 1): Stochastic MILP, uses `as_arrays()` for Gurobi
+- **W3-C** (consumer 1): Stochastic LP, uses `as_arrays()` for Gurobi
 - **W3-D** (consumer 2): DFL baseline, uses `as_tensor(framework="torch")`
 
 Fixed dimensions: K=15 scenarios, 6 series, 288 time steps, 5-min resolution.
@@ -160,7 +160,7 @@ also under-disperses relative to the AS price distribution on this panel. The
 mechanism change fixed the censoring bias but introduced log-space under-dispersion.
 
 **Branch C decision**: Neither jitter variant cleared the AS gate. Per the spec:
-prefer the lower-bias variant for a stochastic MILP (biased scenarios
+prefer the lower-bias variant for a stochastic LP (biased scenarios
 systematically mis-allocate capacity; under-dispersed scenarios only under-hedge).
 The pre-fix AS configuration (no jitter, bias avg +0.98 $/MW) is shipped. The final
 shipped config adds recency weighting and LMP jitter on top of the pre-fix AS baseline.
@@ -294,9 +294,9 @@ a pool dominated by earlier-regime data.
 **Implication for W3-C**: The LMP point forecast (DAM price) is unaffected — it
 comes directly from the day-ahead market. The bias manifests in the scenario
 distribution's mean trajectory. An ~−7 $/MWh mean-scenario LMP bias means the
-MILP sees slightly pessimistic energy scenarios; energy-side revenue in stochastic
-solutions may be modestly under-estimated. W3-C energy results should be read with
-this caveat.
+stochastic LP sees slightly pessimistic energy scenarios; energy-side revenue in
+stochastic solutions may be modestly under-estimated. W3-C energy results should be
+read with this caveat.
 
 ### AS MCPC characterization: near-deterministic with small positive bias (v0.1)
 
@@ -322,7 +322,7 @@ distribution on a small, seasonally concentrated pool. Do not state that the AS
 under-dispersion "decays as the pool grows" — the mechanism failures were independent
 of pool depth.
 
-**Implication for W3-C**: The MILP effectively hedges against a near-deterministic AS
+**Implication for W3-C**: The stochastic LP effectively hedges against a near-deterministic AS
 price path per scenario. The small positive AS bias (+0.8–1.4 $/MW) means AS capacity
 revenue in stochastic solutions may be modestly over-estimated on scenarios where the
 residual bootstrap systematically over-shoots — but the effect is small relative to
@@ -349,7 +349,7 @@ $/MW. Rejected.
 **AS log-space multiplicative jitter (W3-B-fix-2)**: Partially fixed censoring
 bias but log-space under-disperses on the AS price distribution. Rejected.
 
-**K > 15**: MILP solve time increases super-linearly; K=15 is the tractability
+**K > 15**: Stochastic LP solve time increases super-linearly; K=15 is the tractability
 boundary for < 60s solve.
 
 **Season buckets**: Dropped in favor of net-load distance + recency weighting,

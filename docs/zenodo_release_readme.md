@@ -63,7 +63,7 @@ across all 117 days. See `docs/validation/asdc_oracle_summary.md` for details.
 ## Code and baselines
 
 The code behind this dataset — ingest scripts, NPRR1268 formula implementation,
-and MILP baselines — lives in the GitHub repository:
+and LP baselines — lives in the GitHub repository:
 
 **https://github.com/karthikmattu06-hue/ercot-rtcb-bench**
 

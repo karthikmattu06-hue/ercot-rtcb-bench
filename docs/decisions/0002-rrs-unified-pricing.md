@@ -29,7 +29,7 @@ award columns**.
 - The bidder action space exposes one continuous `a_rrs ∈ [0, P_rated]`.
   An optional resource-capability vector `(q_pfr, q_ffr, q_ufr) ∈ {0,1}³`
   partitions awards internally; for BESS, `q_ufr = 0` by default.
-- The MILP discretizes one RRS ASDC (the shared AORDC scaled by the RRS
+- The LP discretizes one RRS ASDC (the shared AORDC scaled by the RRS
   AS Plan target from `np4-33-CD`).
 
 **Consequences.**
@@ -40,7 +40,7 @@ award columns**.
 - Effective action dimensionality for BESS is 5 (energy + Reg-Up +
   Reg-Down + RRS + ECRS + Non-Spin = 6, minus implicit RRS-UFR).
   Documented in the bidder API.
-- The MILP is smaller and faster (one RRS segment family).
+- The LP is smaller and faster (one RRS segment family).
 - Robust to a future ERCOT decision to split RRS pricing: adding
   sub-product price columns is non-breaking.
 

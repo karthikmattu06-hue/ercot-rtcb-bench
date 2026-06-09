@@ -31,7 +31,7 @@ Non-Spin product codes in DAM**, joined by a shared `product_family` key.
   opt-in via `config.bidder.dam_offline_nspin = false` (default).
 - DAM→RT imbalance: `dam.award_nspin_online + dam.award_nspin_offline →
   dam_position_nspin`, netted against `rt.award_nspin`.
-- MILP includes forward-looking SOC constraint: `SOC_t ≥ 4 ×
+- LP includes forward-looking SOC constraint: `SOC_t ≥ 4 ×
   award_nspin_t` for every interval `t` Non-Spin is held.
 
 **Consequences.**
@@ -52,7 +52,7 @@ Non-Spin product codes in DAM**, joined by a shared `product_family` key.
 2. One Non-Spin product code in DAM — rejected; loses information
    present in NP4-188-CD and breaks imbalance computation for thermal
    resources.
-3. No 4-hour SOC constraint — rejected; without it, the MILP overstates
+3. No 4-hour SOC constraint — rejected; without it, the LP overstates
    BESS Non-Spin revenue.
 4. Per-sub-state SOC differentiation (online 30-min, offline 4-hr) —
    rejected; current ERCOT documentation applies 4-hr uniformly under RTC+B.

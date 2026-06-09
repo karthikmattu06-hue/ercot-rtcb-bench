@@ -10,7 +10,7 @@ Design decisions (ADR 0007 / W3-B-fix-2 final):
     multiplicative (W3-B-fix-2) jitter were tested and produced higher bias than the
     baseline due to clipping and log-space under-dispersion respectively. The pre-fix
     behavior (DAM + residual, clip at 0) is the least-wrong configuration for a
-    stochastic MILP: lower bias at the cost of under-dispersion. See ADR 0007.
+    stochastic LP: lower bias at the cost of under-dispersion. See ADR 0007.
   - DAM hourly prices are broadcast to 5-min by forward-fill within each hour.
 """
 

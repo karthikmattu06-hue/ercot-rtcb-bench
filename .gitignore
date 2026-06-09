@@ -69,3 +69,10 @@ logs/
 *.tmp
 *.bak
 ercot-rtcb-bench-v0.1.zip
+
+# Anthropic Claude Code working directory
+.claude/
+
+# ERCOT reference downloads (binary, available from ERCOT directly; do not vendor)
+Aggregate-Operating-Reserve-Demand-Curve-AORDC-Regression-Fit-Parameters-for-RTC-B-Go-Live.xlsx
+Ancillary-Service-Demand-Curve-ASDC-Generator-and-Visualization-Tool.xlsm

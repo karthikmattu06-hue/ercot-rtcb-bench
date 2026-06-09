@@ -2,7 +2,7 @@
 
 Public interface:
     BootstrapForecaster — generates ScenarioTree for a target operating day
-    ScenarioTree        — shared contract for W3-C (stochastic MILP) and W3-D (DFL)
+    ScenarioTree        — shared contract for W3-C (stochastic LP) and W3-D (DFL)
     ForecasterDataset   — data access layer (hybridbid + extended dataset)
 """
 

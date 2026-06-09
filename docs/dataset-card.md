@@ -25,7 +25,7 @@ All data is derived from ERCOT's public market data products.
 ## Supported Tasks
 
 - **Battery bidding**: Train and evaluate BESS bidding algorithms on historical market
-  data (perfect-foresight MIP, stochastic MILP, reinforcement learning, DFL baselines).
+  data (perfect-foresight LP, stochastic LP, reinforcement learning, DFL baselines).
 - **Market analysis**: Study post-RTC+B price formation, AS product co-movement,
   and regime changes following the Dec 5, 2025 market design change.
 - **Forecasting research**: Benchmark short-horizon energy and AS price forecasters

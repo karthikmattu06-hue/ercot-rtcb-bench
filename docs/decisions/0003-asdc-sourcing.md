@@ -30,7 +30,7 @@ so an effective-date column is required.
 - `ASDCHourly` rows keyed by `(operating_date, hour_ending, as_product,
   segment_index)`. Columns: `breakpoint_mw`, `breakpoint_price`,
   `as_plan_mw`, `source_filename`.
-- MILP discretizes `ASDCHourly` into K=10 SOS2 linear segments per
+- LP discretizes `ASDCHourly` into K=10 SOS2 linear segments per
   product-hour. `ASDCParameters` is a unit-test oracle (curve
   reconstruction must match published breakpoints to ≤$0.10/MW-h).
 - Inversion of ASDCs from cleared (MCPC, MW) data is *not* a primary

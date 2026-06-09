@@ -1,4 +1,4 @@
-"""ScenarioTree — shared contract between W3-B forecaster, W3-C stochastic MILP, and W3-D DFL.
+"""ScenarioTree — shared contract between W3-B forecaster, W3-C stochastic LP, and W3-D DFL.
 
 Two-stage fan (not deep tree): one root node, K leaf scenarios, each a full-day
 price trajectory for all 6 series at 5-minute resolution.

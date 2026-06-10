@@ -1,0 +1,46 @@
+{
+  "panel_start": "2026-04-20 00:00:00+00:00",
+  "panel_end": "2026-04-27 00:00:00+00:00",
+  "canonical_seed": 42,
+  "baseline_revenue": 238376.27,
+  "cfa_revenue": 259855.23,
+  "pf_revenue": 351612.0,
+  "cfb_emax": {
+    "label": "CF-B (E[max] AS oracle)",
+    "fix_lmp": false,
+    "fix_as": true,
+    "revenue_total": 274769.53619072225,
+    "revenue_energy": 176760.10886579566,
+    "revenue_as": 90759.89399159324,
+    "liquidation_revenue": 7249.53333333333,
+    "wall_clock_s": 20.74202016700292
+  },
+  "cfab_emax": {
+    "label": "CF-AB (LMP + E[max] AS oracle)",
+    "fix_lmp": true,
+    "fix_as": true,
+    "revenue_total": 294054.35669952433,
+    "revenue_energy": 199300.85744962617,
+    "revenue_as": 89128.17161100924,
+    "liquidation_revenue": 5625.327638888888,
+    "wall_clock_s": 19.75416049998603
+  },
+  "edge_log_cfb": {
+    "near_zero": 66,
+    "cap_hit": 0,
+    "nonconv": 0
+  },
+  "edge_log_cfab": {
+    "near_zero": 66,
+    "cap_hit": 0,
+    "nonconv": 0
+  },
+  "attribution": {
+    "stoch_to_pf": 113235.73000000001,
+    "delta_lmp": 21478.96000000002,
+    "delta_as": 36393.266190722265,
+    "interaction": -2194.139491197944,
+    "residual": 57557.64330047567,
+    "identity_check": 113235.73000000001
+  }
+}

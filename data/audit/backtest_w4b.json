@@ -1,0 +1,238 @@
+{
+  "panel_start": "2026-04-20 00:00:00+00:00",
+  "panel_end": "2026-04-27 00:00:00+00:00",
+  "phase0": {
+    "cfab_reproduced": {
+      "label": "CF-AB reproduction (LMP + E[max] AS)",
+      "fix_lmp": true,
+      "fix_as": true,
+      "revenue_total": 294054.35669952433,
+      "revenue_energy": 199300.85744962617,
+      "revenue_as": 89128.17161100924,
+      "liquidation_revenue": 5625.327638888888,
+      "wall_clock_s": 47.60299708400271
+    },
+    "cfab_expected": 294054.36,
+    "cfab_drift": -0.0033004756551235914,
+    "r_struct_clamped": {
+      "label": "R_struct CLAMPED at PANEL_END (canonical)",
+      "revenue_total": 351597.9212819633,
+      "revenue_energy": 252846.35105953563,
+      "revenue_as": 97595.56355576104,
+      "liquidation_revenue": 1156.006666666667,
+      "wall_clock_s": 36.64083091702196
+    },
+    "r_struct_unclamped": {
+      "label": "R_struct UNCLAMPED (24h window, peeks past panel \u2014 artifact)",
+      "revenue_total": 353016.6083219041,
+      "revenue_energy": 249318.67106313264,
+      "revenue_as": 97580.01889142452,
+      "liquidation_revenue": 6117.918367346936,
+      "wall_clock_s": 39.30302666599164
+    },
+    "pf": {
+      "revenue_total": 351612.0,
+      "revenue_energy": 253765.0,
+      "revenue_as": 97601.0,
+      "liquidation": 245.0
+    },
+    "G_canonical": 14.078718036704231,
+    "G_inpanel_crosscheck": 4467.310045442835,
+    "residual": 57557.64,
+    "residual_minus_G": 57543.561281963295,
+    "boundary_artifact_liq": 5872.918367346936
+  },
+  "phase1": {
+    "lmp_scale": 0.46499023437500003,
+    "lmp_reason": "ok",
+    "as_scales": {
+      "regup": 1.15,
+      "regdn": 0.7,
+      "rrs": 0.45,
+      "ecrs": 0.55,
+      "nspin": 0.5
+    },
+    "as_scales_list": [
+      1.15,
+      0.7,
+      0.45,
+      0.55,
+      0.5
+    ],
+    "coverage_target": 0.8,
+    "lmp_coverage_base": {
+      "0.5": 0.7688492063492064,
+      "0.8": 0.9503968253968254,
+      "0.9": 0.9732142857142857
+    },
+    "lmp_coverage_cal": {
+      "0.5": 0.49007936507936506,
+      "0.8": 0.8005952380952381,
+      "0.9": 0.8958333333333334
+    },
+    "as_coverage_base": {
+      "regup": {
+        "0.5": 0.5543912175648703,
+        "0.8": 0.7844311377245509,
+        "0.9": 0.8687624750499002
+      },
+      "regdn": {
+        "0.5": 0.43645833333333334,
+        "0.8": 0.665625,
+        "0.9": 0.7510416666666667
+      },
+      "rrs": {
+        "0.5": 0.2197986577181208,
+        "0.8": 0.4748322147651007,
+        "0.9": 0.6152125279642058
+      },
+      "ecrs": {
+        "0.5": 0.24503311258278146,
+        "0.8": 0.49061810154525387,
+        "0.9": 0.6136865342163356
+      },
+      "nspin": {
+        "0.5": 0.283234126984127,
+        "0.8": 0.5381944444444444,
+        "0.9": 0.6899801587301587
+      }
+    },
+    "as_coverage_ceiling": {
+      "regup": {
+        "0.5": 0.5653692614770459,
+        "0.8": 0.7904191616766467,
+        "0.9": 0.8682634730538922
+      },
+      "regdn": {
+        "0.5": 0.4296875,
+        "0.8": 0.6682291666666667,
+        "0.9": 0.7536458333333333
+      },
+      "rrs": {
+        "0.5": 0.27628635346756153,
+        "0.8": 0.5151006711409396,
+        "0.9": 0.6297539149888143
+      },
+      "ecrs": {
+        "0.5": 0.2869757174392936,
+        "0.8": 0.5011037527593819,
+        "0.9": 0.6313465783664459
+      },
+      "nspin": {
+        "0.5": 0.34226190476190477,
+        "0.8": 0.5778769841269841,
+        "0.9": 0.7043650793650794
+      }
+    },
+    "as_coverage_unreachable": true
+  },
+  "phase2": {
+    "calibration": {
+      "lmp_scale": 0.46499023437500003,
+      "as_scales": {
+        "regup": 1.15,
+        "regdn": 0.7,
+        "rrs": 0.45,
+        "ecrs": 0.55,
+        "nspin": 0.5
+      }
+    },
+    "cfab_v2_drift": -0.0033004756551235914,
+    "runs": {
+      "lmpdisp": {
+        "label": "+LMPdisp (s_lmp)",
+        "revenue_total": 299920.8086851295,
+        "revenue_energy": 205577.5891044604,
+        "revenue_as": 89934.71958066912,
+        "liquidation_revenue": 4408.499999999998,
+        "edge_log": {
+          "near_zero": 66,
+          "cap_hit": 0,
+          "nonconv": 0
+        }
+      },
+      "asdisp": {
+        "label": "+ASdisp (s_p*)",
+        "revenue_total": 294298.2887358708,
+        "revenue_energy": 199444.4102812555,
+        "revenue_as": 89228.55081572638,
+        "liquidation_revenue": 5625.327638888888,
+        "edge_log": {
+          "near_zero": 66,
+          "cap_hit": 0,
+          "nonconv": 0
+        }
+      },
+      "both": {
+        "label": "+Both dispersion",
+        "revenue_total": 300007.3262949118,
+        "revenue_energy": 205621.91150393005,
+        "revenue_as": 89976.91479098175,
+        "liquidation_revenue": 4408.499999999998,
+        "edge_log": {
+          "near_zero": 66,
+          "cap_hit": 0,
+          "nonconv": 0
+        }
+      },
+      "u_lmp": {
+        "label": "U_LMP (realized LMP + E[max] AS)",
+        "revenue_total": 350767.70392190805,
+        "revenue_energy": 249166.56646084567,
+        "revenue_as": 95233.30412772905,
+        "liquidation_revenue": 6367.833333333332,
+        "edge_log": {
+          "near_zero": 66,
+          "cap_hit": 0,
+          "nonconv": 0
+        }
+      },
+      "u_as": {
+        "label": "U_AS (CF-A LMP + realized AS)",
+        "revenue_total": 297400.9036640621,
+        "revenue_energy": 200781.90189167706,
+        "revenue_as": 90626.87111950481,
+        "liquidation_revenue": 5992.130652880264,
+        "edge_log": {
+          "near_zero": 0,
+          "cap_hit": 0,
+          "nonconv": 0
+        }
+      },
+      "u_both": {
+        "label": "U_both (realized both \u2261 unclamped R_struct)",
+        "revenue_total": 353016.6083219041,
+        "revenue_energy": 249318.67106313264,
+        "revenue_as": 97580.01889142452,
+        "liquidation_revenue": 6117.918367346936,
+        "edge_log": {
+          "near_zero": 0,
+          "cap_hit": 0,
+          "nonconv": 0
+        }
+      }
+    },
+    "decomposition": {
+      "baseline_cfab": 294054.36,
+      "delta_lmpdisp": 5866.448685129522,
+      "delta_asdisp": 243.92873587080976,
+      "interaction2": -157.41112608852563,
+      "remainder": 51604.67370508821,
+      "identity_check": 57557.640000000014,
+      "residual": 57557.64
+    },
+    "bracket": {
+      "lmp": [
+        5866.448685129522,
+        56713.34392190806
+      ],
+      "as": [
+        243.92873587080976,
+        3346.5436640621047
+      ]
+    },
+    "u_both_consistency": 353016.6083219041,
+    "remainder_ge_G": true,
+    "kprobe_fires": true
+  }
+}

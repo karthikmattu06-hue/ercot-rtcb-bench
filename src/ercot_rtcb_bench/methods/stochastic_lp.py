@@ -147,7 +147,9 @@ def solve_stochastic_hour(
             + (pk * dt * ns2k) @ a_ns2[k]
         )
         # Terminal value: pk × mean(lmp2k) × s2[k, T2]
-        terminal_lmp_k = float(lmp2k.mean())
+        # Guard T2=0 (empty stage-2 horizon, e.g. a window clamped to its final
+        # committed hour): no future intervals → no terminal SoC valuation.
+        terminal_lmp_k = float(lmp2k.mean()) if lmp2k.size else 0.0
         term = term + (pk * terminal_lmp_k) * s2[k, T2]
 
         rev2 = term if rev2 is None else rev2 + term

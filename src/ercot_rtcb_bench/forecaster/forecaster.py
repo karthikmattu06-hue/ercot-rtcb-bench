@@ -21,15 +21,15 @@ Usage
 from __future__ import annotations
 
 import logging
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 import numpy as np
 
 from ercot_rtcb_bench.forecaster.analog import DEFAULT_N, POOL_START, match_analogs
-from ercot_rtcb_bench.forecaster.bootstrap import build_raw_scenarios
+from ercot_rtcb_bench.forecaster.bootstrap import ASAnchorCorrection, build_raw_scenarios
 from ercot_rtcb_bench.forecaster.data_loader import ForecasterDataset
 from ercot_rtcb_bench.forecaster.reduce import DEFAULT_K, reduce_scenarios
-from ercot_rtcb_bench.forecaster.scenario_tree import N_STEPS, ScenarioTree
+from ercot_rtcb_bench.forecaster.scenario_tree import ScenarioTree
 
 logger = logging.getLogger(__name__)
 
@@ -62,6 +62,10 @@ class BootstrapForecaster:
     apply_jitter : bool
         If True (default), add Silverman-bandwidth Gaussian jitter to widen the
         predictive interval. Set False to reproduce pre-fix behaviour.
+    as_anchor_correction : ASAnchorCorrection | None
+        If provided (W5-A), scarcity-conditioned shrinkage of the DAM AS anchor is
+        applied during scenario construction. Default None reproduces the v0.1
+        baseline exactly (correction disabled).
     """
 
     def __init__(
@@ -73,6 +77,7 @@ class BootstrapForecaster:
         random_seed: int = 42,
         recency_half_life: float = RECENCY_HALF_LIFE,
         apply_jitter: bool = True,
+        as_anchor_correction: ASAnchorCorrection | None = None,
     ) -> None:
         self.dataset = dataset or ForecasterDataset()
         self.k = k
@@ -81,6 +86,7 @@ class BootstrapForecaster:
         self.random_seed = random_seed
         self.recency_half_life = recency_half_life
         self.apply_jitter = apply_jitter
+        self.as_anchor_correction = as_anchor_correction
 
     def forecast(self, target_day: date) -> ScenarioTree:
         """Generate a ScenarioTree for *target_day*.
@@ -131,6 +137,7 @@ class BootstrapForecaster:
             analog_days=analog_days,
             dataset=self.dataset,
             jitter_rng=jitter_rng,
+            as_anchor_correction=self.as_anchor_correction,
         )
 
         if raw_scenarios.shape[0] == 0:
@@ -164,7 +171,7 @@ class BootstrapForecaster:
 
         # ── Assemble ScenarioTree ─────────────────────────────────────────────
         horizon_start = np.datetime64(
-            datetime.combine(target_day, datetime.min.time()).replace(tzinfo=timezone.utc)
+            datetime.combine(target_day, datetime.min.time()).replace(tzinfo=UTC)
         )
 
         metadata = {
@@ -175,7 +182,7 @@ class BootstrapForecaster:
             "used_scenario_count": int(scenarios.shape[0]),
             "day_type_relaxed": match_info["day_type_relaxed"],
             "target_day_type": match_info["target_day_type"],
-            "generation_timestamp": datetime.now(tz=timezone.utc).isoformat(),
+            "generation_timestamp": datetime.now(tz=UTC).isoformat(),
             "K": int(scenarios.shape[0]),
             "n_analogs_requested": self.n_analogs,
             "pool_start": str(self.pool_start),

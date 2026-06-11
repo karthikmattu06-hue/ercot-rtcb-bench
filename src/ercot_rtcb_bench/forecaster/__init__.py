@@ -6,13 +6,15 @@ Public interface:
     ForecasterDataset   — data access layer (hybridbid + extended dataset)
 """
 
+from ercot_rtcb_bench.forecaster.bootstrap import ASAnchorCorrection
+from ercot_rtcb_bench.forecaster.data_loader import ForecasterDataset
 from ercot_rtcb_bench.forecaster.forecaster import BootstrapForecaster
 from ercot_rtcb_bench.forecaster.scenario_tree import SERIES_NAMES, ScenarioTree
-from ercot_rtcb_bench.forecaster.data_loader import ForecasterDataset
 
 __all__ = [
     "BootstrapForecaster",
     "ScenarioTree",
     "SERIES_NAMES",
     "ForecasterDataset",
+    "ASAnchorCorrection",
 ]

@@ -17,17 +17,54 @@ Design decisions (ADR 0007 / W3-B-fix-2 final):
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass, field
 from datetime import date
 
 import numpy as np
 
 from ercot_rtcb_bench.forecaster.data_loader import ForecasterDataset
-from ercot_rtcb_bench.forecaster.scenario_tree import N_SERIES, N_STEPS, SERIES_NAMES
+from ercot_rtcb_bench.forecaster.scenario_tree import N_SERIES, N_STEPS
 
 logger = logging.getLogger(__name__)
 
 # AS series indices (all non-LMP products, non-negative by market design)
 _AS_SERIES_IDX: list[int] = [1, 2, 3, 4, 5]  # regup, regdn, rrs, ecrs, nspin
+_AS_NAME_TO_IDX: dict[str, int] = {
+    "regup": 1, "regdn": 2, "rrs": 3, "ecrs": 4, "nspin": 5,
+}
+
+
+@dataclass
+class ASAnchorCorrection:
+    """Scarcity-conditioned shrinkage of the DAM AS anchor (W5-A, ADR 0012-pending).
+
+    Two-regime, per-product multiplicative correction applied to the DAM AS quote
+    *before* residual addition and the ≥0 clip, so the bootstrap scenarios (and the
+    E[max] effective price the stochastic LP plans on) inherit it:
+
+        quote ≤ τ_p          → unchanged          (calm hours; Q1–Q3 bias ≈ 0)
+        quote > τ_p          → τ_p + s_p·(quote − τ_p)
+
+    Conditioning is on the DAM AS quote level itself — ex-ante by construction (no
+    realized LMP / net load). Products absent from `shrink` are untouched (RegDn is
+    deliberately omitted; LMP series 0 is never touched).
+    """
+
+    tau: dict[str, float] = field(default_factory=dict)     # product → q90 threshold
+    shrink: dict[str, float] = field(default_factory=dict)  # product → s_p ∈ [0,1]
+
+
+def _apply_as_anchor_correction(
+    dam_target: np.ndarray, corr: ASAnchorCorrection
+) -> np.ndarray:
+    """Return a copy of the [6,288] anchor with the two-regime AS shrinkage applied."""
+    out = dam_target.copy()
+    for name, s in corr.shrink.items():
+        p = _AS_NAME_TO_IDX[name]
+        tau = corr.tau[name]
+        row = out[p]
+        out[p] = np.where(row > tau, tau + s * (row - tau), row)
+    return out
 
 
 def _silverman_lmp_sigma(lmp_residuals: np.ndarray, n: int) -> float:
@@ -56,6 +93,7 @@ def build_raw_scenarios(
     analog_days: list[date],
     dataset: ForecasterDataset,
     jitter_rng: np.random.Generator | None = None,
+    as_anchor_correction: ASAnchorCorrection | None = None,
 ) -> tuple[np.ndarray, np.ndarray, list[date]]:
     """Compute [N × 6 × 288] raw scenarios from analog residuals.
 
@@ -89,6 +127,14 @@ def build_raw_scenarios(
         return empty, np.full((N_SERIES, N_STEPS), np.nan), []
 
     dam_target = _impute_zero(dam_target)
+
+    # Scenario anchor: optionally scarcity-shrunk DAM AS quote (W5-A). The returned
+    # point_forecast stays the RAW DAM (diagnostic); only the scenario-building anchor
+    # is corrected, so the LP's scenarios + E[max] inherit the correction.
+    scenario_anchor = (
+        _apply_as_anchor_correction(dam_target, as_anchor_correction)
+        if as_anchor_correction is not None else dam_target
+    )
 
     # ── Phase 1: collect residuals ────────────────────────────────────────────
     raw_residuals: list[np.ndarray] = []
@@ -130,7 +176,7 @@ def build_raw_scenarios(
     raw_scenarios: list[np.ndarray] = []
 
     for residual in raw_residuals:
-        scenario = dam_target + residual  # [6, 288]
+        scenario = scenario_anchor + residual  # [6, 288] (AS anchor optionally shrunk)
 
         if lmp_sigma is not None:
             # LMP only: additive Gaussian jitter; can remain negative (correct)

@@ -112,8 +112,8 @@ high-LMP energy arbitrage that coincides with scarcity — exactly the diagnosti
 prediction. **But AS revenue *rose* (+$3,947), not fell** as a naive energy-for-AS
 swap would suggest: the baseline was mis-allocating AS into scarcity hours where
 realized MCPC is low (the over-forecast), so the reallocation improved *both* margins.
-The clean "AS down" half of the predicted mechanism does not hold; the reallocation is
-Pareto-improving here.
+The clean "AS down" half of the predicted mechanism does not hold (all three revenue
+components rose; per *day* it did not — see the per-day losses below).
 
 ### Per-day Δ (energy + AS; liquidation is panel-level)
 

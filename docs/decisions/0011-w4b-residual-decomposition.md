@@ -166,7 +166,12 @@ family must change (§3) for any further AS gain.
 Ranked by **bankable** revenue (clairvoyant / EVPI content excluded):
 
 1. **AS effective-price correction — $36.4k** (W4-A ΔAS): the largest bankable
-   lever; the E[max] effective-price error.
+   lever; the E[max] effective-price error. **(Update, W5-A / ADR 0012:** partially
+   banked at **50.2% recovery** — +$18,271 on the eval panel via scarcity-conditioned
+   DAM-anchor shrinkage. The remaining ≈ $18.1k is **unattributed**; candidate
+   contributors include the nspin anchor residual, AS distribution realism (item 4),
+   and the panel variance evident in W5-A's loss days — none measured. One-week panel;
+   second-panel replication required before the lever is claimed.**)**
 2. **LMP evening-peak mean correction — $21.5k** (W4-A ΔLMP): concentrated in
    HoD 0–1; regime-aware analog selection / evening-peak recalibration.
 3. **LMP spread narrowing — $5.9k** (W4-B ΔLMPdisp, s≈0.47): near-free; LMP

@@ -1,0 +1,63 @@
+{
+  "pull": {
+    "pulled": 225,
+    "skipped": 76,
+    "empty": 0,
+    "failed": 0,
+    "failed_items": [],
+    "schema_drift": false
+  },
+  "coverage_latest_finite": {
+    "rt_prices": "2026-06-09 04:55Z",
+    "dam_prices": "2026-06-09 04:00Z",
+    "system_conditions": "2026-06-16 04:00Z"
+  },
+  "eligibility_tau_metric": {
+    "2026-04-27": {
+      "gap_pct": 0.149,
+      "eligible": true,
+      "tau_qualifying": 341
+    },
+    "2026-05-04": {
+      "gap_pct": 0.0,
+      "eligible": true,
+      "tau_qualifying": 187
+    },
+    "2026-05-11": {
+      "gap_pct": 0.099,
+      "eligible": true,
+      "tau_qualifying": 200
+    },
+    "2026-05-18": {
+      "gap_pct": 0.0,
+      "eligible": true,
+      "tau_qualifying": 234
+    },
+    "2026-05-25": {
+      "gap_pct": 0.05,
+      "eligible": true,
+      "tau_qualifying": 280
+    },
+    "2026-06-01": {
+      "gap_pct": 0.149,
+      "eligible": true,
+      "tau_qualifying": 376
+    }
+  },
+  "regression": {
+    "gate": "FAILED",
+    "baseline_expected": 238376.27,
+    "baseline_after_rebuild": 238378.8,
+    "drift": 2.53,
+    "energy_after": 159021,
+    "as_after": 72480,
+    "energy_unchanged": true,
+    "fresh_build_matches_upstream_primary_exactly": true,
+    "interpretation": "rebuild is canonical-faithful (== hybridbid as_prices source); the May-16 build on which $238,376.27 was computed was slightly divergent in April AS. Not corruption \u2014 a faithfulness correction that breaks exact reproduction.",
+    "canonical_may16_parquets": "overwritten by assemble; restore source = Zenodo if exact reproduction required"
+  },
+  "decision_pending": {
+    "A_repin": "adopt canonical-faithful rebuild; re-pin baseline to ~$238,378.80; all committed W4/W5 numbers shift ~0.001%",
+    "B_restore": "restore exact May-16 build from Zenodo; patch only NEW dates without rebuilding Apr 1-26; preserves exact reproduction"
+  }
+}

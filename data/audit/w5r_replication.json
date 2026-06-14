@@ -1,0 +1,125 @@
+{
+  "STOP": "no eligible candidate week \u2014 data ingestion is the prerequisite",
+  "frozen_correction": {
+    "tau": {
+      "regup": 3.56,
+      "rrs": 2.71,
+      "ecrs": 2.56,
+      "nspin": 14.98
+    },
+    "shrink": {
+      "regup": 0.15195465087890625,
+      "rrs": 0.00125885009765625,
+      "ecrs": 0.0374603271484375,
+      "nspin": 0.0
+    }
+  },
+  "phase0": {
+    "coverage": {
+      "rt": "2026-05-11 04:55:00+00:00",
+      "dam": "2026-05-11 04:00:00+00:00",
+      "sys": "2026-05-18 04:00:00+00:00"
+    },
+    "thresholds": {
+      "regup": 2.65,
+      "rrs": 0.73,
+      "ecrs": 0.88,
+      "nspin": 3.744000000000015
+    },
+    "pool_convention": "dynamic strictly-before-target [2026-01-09, target)",
+    "candidates": {
+      "2026-04-27": {
+        "sun": "2026-05-03",
+        "tail_ok": true,
+        "reason": "ok",
+        "worst_gap_frac": 0.01984126984126984,
+        "gap_ok": false,
+        "eligible": false,
+        "integrity": {
+          "lmp": {
+            "missing": 13,
+            "frac": 0.006448412698412698
+          },
+          "mcpc_regup": {
+            "missing": 40,
+            "frac": 0.01984126984126984
+          },
+          "mcpc_regdn": {
+            "missing": 40,
+            "frac": 0.01984126984126984
+          },
+          "mcpc_rrs": {
+            "missing": 40,
+            "frac": 0.01984126984126984
+          },
+          "mcpc_ecrs": {
+            "missing": 40,
+            "frac": 0.01984126984126984
+          },
+          "mcpc_nspin": {
+            "missing": 40,
+            "frac": 0.01984126984126984
+          }
+        }
+      },
+      "2026-05-04": {
+        "sun": "2026-05-10",
+        "tail_ok": true,
+        "reason": "ok",
+        "worst_gap_frac": 0.034722222222222224,
+        "gap_ok": false,
+        "eligible": false,
+        "integrity": {
+          "lmp": {
+            "missing": 36,
+            "frac": 0.017857142857142856
+          },
+          "mcpc_regup": {
+            "missing": 70,
+            "frac": 0.034722222222222224
+          },
+          "mcpc_regdn": {
+            "missing": 70,
+            "frac": 0.034722222222222224
+          },
+          "mcpc_rrs": {
+            "missing": 70,
+            "frac": 0.034722222222222224
+          },
+          "mcpc_ecrs": {
+            "missing": 70,
+            "frac": 0.034722222222222224
+          },
+          "mcpc_nspin": {
+            "missing": 70,
+            "frac": 0.034722222222222224
+          }
+        }
+      }
+    }
+  },
+  "phase1_context_counts": {
+    "2026-04-27": {
+      "qualifying": 593,
+      "total": 2016,
+      "per_product": {
+        "regup": 294,
+        "rrs": 393,
+        "ecrs": 423,
+        "nspin": 474
+      },
+      "eligible": false
+    },
+    "2026-05-04": {
+      "qualifying": 303,
+      "total": 2016,
+      "per_product": {
+        "regup": 84,
+        "rrs": 237,
+        "ecrs": 276,
+        "nspin": 281
+      },
+      "eligible": false
+    }
+  }
+}

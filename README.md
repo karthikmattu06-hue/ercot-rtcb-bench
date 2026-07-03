@@ -29,7 +29,18 @@ target venue: NeurIPS 2026 Climate Change AI workshop).
 
 ## Dataset
 
-**v0.1** (Dec 5, 2025 – Mar 31, 2026): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20204994.svg)](https://doi.org/10.5281/zenodo.20204994)  
+Concept DOI (always resolves to the latest version): [10.5281/zenodo.20204993](https://doi.org/10.5281/zenodo.20204993)
+
+**v0.2** (Jan 1 – Jun 9, 2026) — **canonical reproduction target**: [10.5281/zenodo.21178739](https://doi.org/10.5281/zenodo.21178739)  
+Canonical forecaster-input parquets (RT LMP + AS MCPC, DAM SPP + AS MCPC, system
+conditions) re-pinned to the ADR 0013 rebuild + W5-R backfill pull. The committed
+baseline/audit numbers reproduce against **v0.2** (Stochastic-LP eval baseline
+$238,378.80); see [`docs/decisions/0016-zenodo-v02-deposit.md`](docs/decisions/0016-zenodo-v02-deposit.md).
+v0.2 is **not** a strict superset of v0.1 — it drops the Dec 2025 span and the auxiliary
+tables (`as_clearing`, `asdc_hourly`, `asdc_params`, `as_plan`) and rebuilds overlapping
+months; use v0.1 for those.
+
+**v0.1** (Dec 5, 2025 – Mar 31, 2026) — historical: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20204994.svg)](https://doi.org/10.5281/zenodo.20204994)  
 **v1.0** (Dec 5, 2025 – Jun 5, 2026): in preparation.
 
 See [`docs/dataset-card.md`](docs/dataset-card.md) for full documentation.

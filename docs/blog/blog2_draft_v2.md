@@ -1,6 +1,6 @@
 # The $58k That Wasn't
 
-*Second post in a series about ercot-rtcb-bench, an open benchmark I'm building for battery bidding in the Texas power market. The [first post](#) introduced the benchmark. This one covers what happened when I tried to cash in its two biggest findings.*
+*Second post in a series about ercot-rtcb-bench, an open benchmark I'm building for battery bidding in the Texas power market. The [first post](https://karthik204653.substack.com/p/what-rtcb-actually-changed-a-walkthrough) introduced the benchmark. This one covers what happened when I tried to cash in its two biggest findings.*
 
 ## Some quick background
 
@@ -25,7 +25,7 @@ One caveat was attached from the start. These numbers are ceilings. They measure
 
 I started with the bigger target, the $36k of AS price error.
 
-Digging into the code revealed something surprising: the system had no real AS price forecaster. It simply took the day-ahead market's own AS prices as its prediction and added some historical noise. Measuring the errors showed a clear pattern. The day-ahead prices ran too high, and almost all of the overshoot happened in a small number of tight, high-demand hours. Ordinary hours were fine.
+Digging into the code revealed something surprising: the system had no real AS price forecaster. It simply took the day-ahead market's own AS prices as its prediction and added leftover errors from similar past days. Measuring the errors showed a clear pattern. The day-ahead prices ran too high, and almost all of the overshoot happened in a small number of tight, high-demand hours. Ordinary hours were fine.
 
 So I built a small correction: when day-ahead AS prices spike above their normal range, shrink them toward it. Four fitted parameters total, chosen to cancel the measured overshoot on training data.
 
@@ -44,7 +44,7 @@ So I tested it on three more weeks, chosen by a rule fixed in advance (the week 
 
 Two of the three new weeks lost money. Worse, the week with the *most* scarcity lost money, and that is exactly where a genuine fix should have helped most.
 
-The reason became clear in the details. The day-ahead market's high AS prices are a prediction that scarcity is coming. Sometimes scarcity arrives and those prices are justified. Sometimes it doesn't and they were too high. My correction assumed they were always too high. In weeks where scarcity failed to materialize, that assumption paid off. In weeks where scarcity showed up for real, the correction made the battery hold back exactly when reserves were most valuable. It was never a fix. It was a bet, and it wins or loses depending on the week.
+The reason became clear in the details. The day-ahead market's high AS prices are a prediction that scarcity is coming. Sometimes scarcity arrives and those prices are justified. Sometimes it doesn't and they were too high. My correction assumed they were always too high. In weeks where the day-ahead's forecast scarcity failed to show up in real time, that assumption paid off. In weeks where it did show up, the correction made the battery hold back exactly when reserves were most valuable. And the calm week lost money anyway, the most of any week. It was never a fix. It was a bet, and it wins or loses depending on the week.
 
 I retired it.
 
@@ -54,7 +54,7 @@ Next in line was the evening price bias, the $21.5k target. It had the same shap
 
 This time I ran a cheap check first. I now had seven weeks of clean data, so before building anything, I measured the evening bias on every week separately.
 
-It flipped sign. Four weeks the forecast was too low, three weeks too high. Averaged across weeks, the bias was $0.82/MWh, essentially zero. The scary −$48/MWh figure came from one day on the original test week. That day was April 25. The same scarcity day that had propped up the first fix.
+It flipped sign. Four weeks the forecast was too low, three weeks too high. Averaged across weeks, the bias was −$0.82/MWh, essentially zero. The scary −$48/MWh figure came from one day on the original test week. That day was April 25. The same scarcity day that had propped up the first fix.
 
 One afternoon of measurement, and the second correction was dead before I wrote a line of it.
 
@@ -68,7 +68,7 @@ This changed the project's direction. The forecaster roadmap used to be a list o
 
 ## Why this matters beyond my benchmark
 
-Battery revenue in ERCOT concentrates on scarcity days. Scarcity days are rare and irregular. Put those together and any single backtest window is heavily shaped by its scarcity luck, which means a bidding improvement measured on one window is partly, sometimes mostly, an artifact of that window. My correction recovered 50% of a measured ceiling on one week and lost money over four.
+Battery revenue in ERCOT concentrates on scarcity days. Scarcity days are rare and irregular. Put those together and any single backtest window is heavily shaped by its scarcity luck, which means a bidding improvement measured on one window is partly, sometimes mostly, an artifact of that window. My correction recovered 50% of a measured ceiling on one week and lost money on two of the three weeks that followed.
 
 Nothing that caught this was clever. The replication requirement was written into my decision log before the test result existed. The extra test weeks were picked by a fixed rule, so I couldn't choose flattering ones. The correction was frozen before retesting. The pass/fail criteria were written down in advance. This is ordinary scientific hygiene, and it is still uncommon in how bidding strategies get evaluated. If a vendor shows you an improvement measured on one favorable window, this post is the reason to ask for the other windows.
 
@@ -76,6 +76,6 @@ Nothing that caught this was clever. The replication requirement was written int
 
 All of this rests on seven weeks of data from April to June 2026, the first months of the new market design. Summer scarcity in Texas is a different beast, and whether these findings hold there is an open question I plan to test now that summer data exists.
 
-Everything is reproducible: code and decision records are in the [GitHub repo](https://github.com/karthikmattu06-hue/ercot-rtcb-bench), and the exact dataset behind every number here is archived at Zenodo ([10.5281/zenodo.21178739](https://doi.org/10.5281/zenodo.21178739)).
+Everything is reproducible: code and decision records are in the [GitHub repo](https://github.com/karthikmattu06-hue/ercot-rtcb-bench), and the canonical dataset behind the replication results is archived at Zenodo ([10.5281/zenodo.21178739](https://doi.org/10.5281/zenodo.21178739)).
 
 *Baseline figures: stochastic bidder $238,376 on the April test week, later restated to $238,378.80 after a data rebuild documented in the repo; perfect-foresight bound $351,612.*

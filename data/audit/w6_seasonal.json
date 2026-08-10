@@ -1136,5 +1136,238 @@
         "delta_on_top_scarcity_day": 0.0
       }
     }
+  },
+  "exhibit1_tau_crossing": {
+    "quantity": "fraction of hourly DAM AS quotes > frozen tau_p, per product per month",
+    "tau_asserted_equal_adr0012": true,
+    "monthly": {
+      "2026-01": {
+        "regup": {
+          "frac": 0.17886178861788618,
+          "n_cross": 132,
+          "n": 738
+        },
+        "rrs": {
+          "frac": 0.1802168021680217,
+          "n_cross": 133,
+          "n": 738
+        },
+        "ecrs": {
+          "frac": 0.21002710027100271,
+          "n_cross": 155,
+          "n": 738
+        },
+        "nspin": {
+          "frac": 0.08943089430894309,
+          "n_cross": 66,
+          "n": 738
+        }
+      },
+      "2026-02": {
+        "regup": {
+          "frac": 0.050595238095238096,
+          "n_cross": 34,
+          "n": 672
+        },
+        "rrs": {
+          "frac": 0.052083333333333336,
+          "n_cross": 35,
+          "n": 672
+        },
+        "ecrs": {
+          "frac": 0.06547619047619048,
+          "n_cross": 44,
+          "n": 672
+        },
+        "nspin": {
+          "frac": 0.002976190476190476,
+          "n_cross": 2,
+          "n": 672
+        }
+      },
+      "2026-03": {
+        "regup": {
+          "frac": 0.028225806451612902,
+          "n_cross": 21,
+          "n": 744
+        },
+        "rrs": {
+          "frac": 0.028225806451612902,
+          "n_cross": 21,
+          "n": 744
+        },
+        "ecrs": {
+          "frac": 0.01747311827956989,
+          "n_cross": 13,
+          "n": 744
+        },
+        "nspin": {
+          "frac": 0.010752688172043012,
+          "n_cross": 8,
+          "n": 744
+        }
+      },
+      "2026-04": {
+        "regup": {
+          "frac": 0.13472222222222222,
+          "n_cross": 97,
+          "n": 720
+        },
+        "rrs": {
+          "frac": 0.15,
+          "n_cross": 108,
+          "n": 720
+        },
+        "ecrs": {
+          "frac": 0.1486111111111111,
+          "n_cross": 107,
+          "n": 720
+        },
+        "nspin": {
+          "frac": 0.0763888888888889,
+          "n_cross": 55,
+          "n": 720
+        }
+      },
+      "2026-05": {
+        "regup": {
+          "frac": 0.10690121786197564,
+          "n_cross": 79,
+          "n": 739
+        },
+        "rrs": {
+          "frac": 0.11096075778078485,
+          "n_cross": 82,
+          "n": 739
+        },
+        "ecrs": {
+          "frac": 0.13531799729364005,
+          "n_cross": 100,
+          "n": 739
+        },
+        "nspin": {
+          "frac": 0.10960757780784844,
+          "n_cross": 81,
+          "n": 739
+        }
+      },
+      "2026-06": {
+        "regup": {
+          "frac": 0.04195804195804196,
+          "n_cross": 30,
+          "n": 715
+        },
+        "rrs": {
+          "frac": 0.043356643356643354,
+          "n_cross": 31,
+          "n": 715
+        },
+        "ecrs": {
+          "frac": 0.07412587412587412,
+          "n_cross": 53,
+          "n": 715
+        },
+        "nspin": {
+          "frac": 0.04755244755244755,
+          "n_cross": 34,
+          "n": 715
+        }
+      },
+      "2026-07": {
+        "regup": {
+          "frac": 0.017591339648173207,
+          "n_cross": 13,
+          "n": 739
+        },
+        "rrs": {
+          "frac": 0.02571041948579161,
+          "n_cross": 19,
+          "n": 739
+        },
+        "ecrs": {
+          "frac": 0.058186738836265225,
+          "n_cross": 43,
+          "n": 739
+        },
+        "nspin": {
+          "frac": 0.02029769959404601,
+          "n_cross": 15,
+          "n": 739
+        }
+      }
+    },
+    "realized_scarcity_comparison": {
+      "2026-01": {
+        "realized_frac": 0.12345817447858264,
+        "n": 8918
+      },
+      "2026-02": {
+        "realized_frac": 0.047619047619047616,
+        "n": 8064
+      },
+      "2026-03": {
+        "realized_frac": 0.052222351166299176,
+        "n": 8617
+      },
+      "2026-04": {
+        "realized_frac": 0.08682565408659412,
+        "n": 8638
+      },
+      "2026-05": {
+        "realized_frac": 0.11487167992827524,
+        "n": 8923
+      },
+      "2026-06": {
+        "realized_frac": 0.09065647794373047,
+        "n": 8637
+      },
+      "2026-07": {
+        "realized_frac": 0.03125350061610843,
+        "n": 8927
+      }
+    },
+    "reading": "NOT a monotone decline (falls Jan-Mar, rebounds Apr-May, falls Jun-Jul); co-moves with realized scarcity, so maturation is confounded. Candidate maturation mechanism NOT ESTABLISHED by W6 evidence. Establishes only that the trigger condition is strongly time-varying (regup 1.8%-17.9%)."
+  },
+  "exhibit2_winter_storm_fern": {
+    "weather_watch": "2026-01-21",
+    "event_period": "2026-01-23..2026-01-26",
+    "doe_emergency_order": "2026-01-25..2026-01-27",
+    "ercot_report_published": "2026-01-28",
+    "provenance": "ERCOT post-event report confirms event + Jan 21 Weather Watch but prints no explicit date range in its 3 pages; Jan 23-26 from corroborating sources + DOE order window",
+    "intersections": {
+      "analog_pool_from_2026-01-09": "YES (pool member for every panel)",
+      "w5a_train_2026-01-23..2026-04-13": "YES \u2014 first 4 days of train window",
+      "w5a_val_2026-04-14..19": "no",
+      "eval_2026-04-20..26": "no",
+      "w5r_w5b_panels": "no",
+      "w6_july_panels": "no"
+    },
+    "train_weight": {
+      "train_intervals": 23328,
+      "fern_intervals": 1152,
+      "fern_frac_of_train": 0.04938271604938271,
+      "per_product": {
+        "regup": {
+          "train_above_tau": 1760,
+          "fern_above_tau": 571,
+          "fern_share": 0.32443181818181815
+        },
+        "rrs": {
+          "train_above_tau": 828,
+          "fern_above_tau": 22,
+          "fern_share": 0.026570048309178744
+        },
+        "ecrs": {
+          "train_above_tau": 1100,
+          "fern_above_tau": 139,
+          "fern_share": 0.12636363636363637
+        },
+        "nspin": {
+          "train_above_tau": 762,
+          "fern_above_tau": 117,
+          "fern_share": 0.15354330708661418
+        }
+      }
+    }
   }
 }

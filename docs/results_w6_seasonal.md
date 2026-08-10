@@ -271,3 +271,114 @@ The summer test ADR 0015 called for still has not been run at the intended sever
 July 2026 did not supply a high-scarcity week. August (partially covered: RT/DAM finite to
 Aug 4) and September remain the natural window. Whether the two claims survive a genuine
 summer scarcity regime is **still unestablished**.
+
+---
+
+# Appendix — W6 Exhibits (read-only; no LP runs, no refit)
+
+Frozen τ_p asserted equal to ADR 0012 at runtime for both exhibits
+(regup 3.560 · rrs 2.710 · ecrs 2.560 · nspin 14.980).
+
+## Exhibit 1 — Monthly τ_p-crossing fractions (maturation check)
+
+**Quantity:** fraction of hourly DAM AS quotes exceeding the frozen τ_p, per product, per
+month. This is the correction's *trigger condition*: the ADR 0012 two-regime rule fires only
+when the DAM quote clears τ_p. Motivation: the W6 calm panel (Jul 13–19) returned exactly
+$0.00 because the quote never crossed τ.
+
+| Month | regup | rrs | ecrs | nspin | DAM hours |
+|---|---:|---:|---:|---:|---:|
+| 2026-01 | **17.9%** | **18.0%** | **21.0%** | 8.9% | 738 |
+| 2026-02 | 5.1% | 5.2% | 6.5% | 0.3% | 672 |
+| 2026-03 | 2.8% | 2.8% | 1.7% | 1.1% | 744 |
+| 2026-04 | 13.5% | 15.0% | 14.9% | 7.6% | 720 |
+| 2026-05 | 10.7% | 11.1% | 13.5% | **11.0%** | 739 |
+| 2026-06 | 4.2% | 4.3% | 7.4% | 4.8% | 715 |
+| 2026-07 | **1.8%** | **2.6%** | 5.8% | 2.0% | 739 |
+
+**Reading — the crossing fraction does _not_ decline monotonically, and the maturation
+hypothesis is _not_ established by this exhibit.** The series falls Jan→Mar, **rebounds
+Apr→May**, then falls again Jun→Jul. July is the series minimum for regup (1.8%) and rrs
+(2.6%) but not for ecrs (Mar 1.7%) or nspin (Feb 0.3%).
+
+### Why the trend reading is confounded
+
+The DAM crossing fraction co-moves with how scarce the month actually was, so calendar time
+and scarcity are not separable here:
+
+| Month | DAM quote > τ (regup) | Realized RT MCPC > τ (any product) |
+|---|---:|---:|
+| 2026-01 | 17.9% | 12.3% |
+| 2026-02 | 5.1% | 4.8% |
+| 2026-03 | 2.8% | 5.2% |
+| 2026-04 | 13.5% | 8.7% |
+| 2026-05 | 10.7% | 11.5% |
+| 2026-06 | 4.2% | 9.1% |
+| 2026-07 | 1.8% | 3.1% |
+
+The Apr–May rebound in the DAM series tracks the spring scarcity months, not a maturation
+path. A maturation claim would need a **scarcity-normalised** measure (e.g. DAM crossing
+conditional on realized scarcity level) that this exhibit does not provide.
+
+**Status: the chunk's antecedent ("if declining") is _not_ satisfied.** The candidate
+maturation mechanism is therefore recorded as **NOT ESTABLISHED by W6 evidence** — an open
+question, not a finding. What the exhibit *does* establish is narrower and still useful: the
+trigger condition is **strongly time-varying** (1.8%–17.9% for regup across seven months),
+which is sufficient on its own to explain the Jul 13–19 inertness.
+
+## Exhibit 2 — Winter Storm Fern date-check
+
+### Dates
+
+| Item | Date | Source |
+|---|---|---|
+| ERCOT Weather Watch issued | **2026-01-21** | ERCOT post-event report (primary) |
+| Storm event period | **2026-01-23 – 2026-01-26** | corroborating sources (see note) |
+| DOE emergency order in effect | 2026-01-25 – 2026-01-27 | DOE 202(c) filings |
+| ERCOT post-event report published | 2026-01-28 | ERCOT (primary) |
+
+> **Provenance note.** ERCOT's post-event report is titled "Winter Storm Fern – January 2026"
+> and confirms the Jan 21 Weather Watch, but its three pages do **not** print an explicit
+> event date range. The Jan 23–26 range comes from corroborating coverage (which also
+> describes the storm as running "Friday through Monday" — Jan 23, 2026 was a Friday) and the
+> DOE emergency-order window. Treated as **well-corroborated but not ERCOT-verbatim**; the
+> preprint should cite the DOE order dates, which are documentary.
+
+### Window intersections
+
+| Project window | Dates | Intersects Fern? |
+|---|---|:--:|
+| Bootstrap analog pool | from 2026-01-09, strictly-before-target | **YES** — Fern days are pool members for every panel |
+| **W5-A train (τ_p, s_p fitted here)** | **Jan 23 – Apr 13** | **YES — Fern is the first 4 days of the train window** |
+| W5-A val | Apr 14 – 19 | no |
+| Eval panel | Apr 20 – 26 | no |
+| W5-R scarcity-confirmatory | Apr 27 – May 3 | no |
+| W5-R calm | May 4 – 10 | no |
+| W5-B panels | May 11 – 31 | no |
+| W5-R scarcity-primary | Jun 1 – 7 | no |
+| W6 July panels | Jun 29 – Aug 2 | no |
+
+### Weight of Fern inside the training window
+
+τ_p is the q90 of realized RT MCPC over the train window, so Fern's share of the
+above-threshold mass is the quantity that matters:
+
+| Product | τ_p | Train intervals > τ_p | Of which in Fern | **Fern share** |
+|---|---:|---:|---:|---:|
+| regup | 3.56 | 1,760 | 571 | **32.4%** |
+| rrs | 2.71 | 828 | 22 | 2.7% |
+| ecrs | 2.56 | 1,100 | 139 | 12.6% |
+| nspin | 14.98 | 762 | 117 | 15.4% |
+
+Fern is **4.9%** of the train window by duration (1,152 of 23,328 intervals).
+
+**Two sentences for the paper.** Winter Storm Fern (Jan 23–26, 2026) sits at the very start of
+the W5-A training window — its first day *is* the training window's first day — and Fern days
+are members of the bootstrap analog pool for every panel in the project. Although only 4.9% of
+the training window by duration, Fern supplies **32.4% of the above-τ_p regup intervals** (and
+12–15% for ecrs/nspin) that determine the fitted thresholds, so the frozen correction's trigger
+level is materially set by a single named storm — the same single-episode dependence ADR 0015
+identified downstream, now shown to be present in the *fitting* data as well.
+
+> No refit was performed. Recomputing τ_p with Fern excluded is a natural sensitivity check but
+> is **out of scope here** (it would be a refit); recorded as a recommended follow-up.

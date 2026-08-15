@@ -178,3 +178,44 @@ system. A pool-level exclusion would be a materially larger change and was not a
 One refit only (train-minus-Fern). No other parameter tuning, no new correction form, no ADR,
 not merged. The added Jun 1–7 control re-ran committed parameters — it introduced no new
 parameter values.
+
+---
+
+# Appendix — Jun 1–7 vintage cell-diff (backup rule payoff)
+
+Backup `~/ercot-w6-backup-preassemble/` verified against `SHA256SUMS_pre_w6.txt` before use
+(`rt_prices/2026-06.parquet`, `dam_prices/2026-06.parquet`, `system_conditions/2026-06.parquet`
+all **OK**). Diff scope: the Jun 1–7 panel input window (2026-06-01 00:00 → 2026-06-08 00:00 UTC).
+Row indices are identical between vintages; only cell values were compared.
+
+| Series · column | Changed | NaN→val | val→NaN | max abs Δ | Days touched |
+|---|---:|---:|---:|---:|---|
+| `rt_prices.lmp` | 8 | 0 | 0 | **44.03** | 06-01, 06-04, 06-05, 06-06, 06-07 |
+| `rt_prices.mcpc_regup` | 6 | 0 | 0 | 0.76 | 06-01, 06-04, 06-05, 06-07 |
+| `rt_prices.mcpc_regdn` | 2 | 0 | 0 | 0.49 | 06-04, 06-05 |
+| `rt_prices.mcpc_rrs` | 1 | 0 | 0 | 4.37 | 06-06 |
+| `rt_prices.mcpc_ecrs` | 2 | 0 | 0 | 0.24 | 06-05, 06-07 |
+| `rt_prices.mcpc_nspin` | 2 | 0 | 0 | 1.27 | 06-01, 06-07 |
+| `dam_prices.*` | **0** | 0 | 0 | — | — |
+| `system_conditions.*` | **0** | 0 | 0 | — | — |
+| **Total** | **21** | **0** | **0** | | 5 of 7 days |
+
+Per-day changed cells: `06-01: 3 · 06-04: 6 · 06-05: 6 · 06-06: 2 · 06-07: 4` (06-02, 06-03 untouched).
+
+Largest revisions:
+
+| Timestamp (UTC) | Column | Old | New | Δ |
+|---|---|---:|---:|---:|
+| 2026-06-06 13:25 | `lmp` | 55.92 | 99.95 | **+44.03** |
+| 2026-06-04 20:05 | `lmp` | 44.38 | 38.22 | −6.16 |
+| 2026-06-06 08:25 | `mcpc_rrs` | 12.65 | 8.28 | −4.37 |
+| 2026-06-05 20:10 | `lmp` | 45.75 | 49.09 | +3.34 |
+| 2026-06-01 00:30 | `lmp` | 39.80 | 36.52 | −3.28 |
+| 2026-06-05 20:40 | `lmp` | 63.60 | 65.45 | +1.85 |
+
+The reassembly changed **21 of 12,096 RT cells (0.174%)** in the panel window — all
+value-to-value revisions, with **no NaN filled and no value lost**, and `dam_prices` and
+`system_conditions` byte-identical. The changes are **scattered, not concentrated**: 21 cells
+spread across 5 of the 7 days and 6 different columns, with no clustering into a single day or
+contiguous run. One LMP cell accounts for the bulk of the magnitude (+$44.03 at 2026-06-06
+13:25); every other revision is under $6.20.

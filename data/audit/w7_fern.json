@@ -740,5 +740,135 @@
     "delta_refit_params_new_vintage": -5324.58,
     "vintage_effect_on_delta": 4.96,
     "refit_effect_on_delta": -564.54
+  },
+  "jun_vintage_cell_diff": {
+    "backup": "~/ercot-w6-backup-preassemble (SHA256SUMS_pre_w6.txt verified OK before use)",
+    "window": "2026-06-01T00:00Z .. 2026-06-08T00:00Z",
+    "row_index_identical": true,
+    "total_changed_cells": 21,
+    "nan_to_value": 0,
+    "value_to_nan": 0,
+    "dam_prices_changed": 0,
+    "system_conditions_changed": 0,
+    "rt_window_cells": 12096,
+    "changed_frac": 0.001736111111111111,
+    "per_day_changed": {
+      "2026-06-01": 3,
+      "2026-06-04": 6,
+      "2026-06-05": 6,
+      "2026-06-06": 2,
+      "2026-06-07": 4
+    },
+    "largest_revisions": [
+      {
+        "ts": "2026-06-06 13:25:00+00:00",
+        "col": "lmp",
+        "old": 55.92,
+        "new": 99.95
+      },
+      {
+        "ts": "2026-06-04 20:05:00+00:00",
+        "col": "lmp",
+        "old": 44.38,
+        "new": 38.22
+      },
+      {
+        "ts": "2026-06-06 08:25:00+00:00",
+        "col": "mcpc_rrs",
+        "old": 12.65,
+        "new": 8.28
+      },
+      {
+        "ts": "2026-06-05 20:10:00+00:00",
+        "col": "lmp",
+        "old": 45.75,
+        "new": 49.09
+      },
+      {
+        "ts": "2026-06-01 00:30:00+00:00",
+        "col": "lmp",
+        "old": 39.8,
+        "new": 36.52
+      },
+      {
+        "ts": "2026-06-05 20:40:00+00:00",
+        "col": "lmp",
+        "old": 63.6,
+        "new": 65.45
+      }
+    ],
+    "per_column": {
+      "rt_prices.lmp": {
+        "changed": 8,
+        "nan_to_value": 0,
+        "value_to_nan": 0,
+        "max_abs_delta": 44.03,
+        "days": [
+          "2026-06-01",
+          "2026-06-04",
+          "2026-06-05",
+          "2026-06-06",
+          "2026-06-07"
+        ],
+        "total_cells": 2016
+      },
+      "rt_prices.mcpc_regup": {
+        "changed": 6,
+        "nan_to_value": 0,
+        "value_to_nan": 0,
+        "max_abs_delta": 0.7599999999999998,
+        "days": [
+          "2026-06-01",
+          "2026-06-04",
+          "2026-06-05",
+          "2026-06-07"
+        ],
+        "total_cells": 2016
+      },
+      "rt_prices.mcpc_regdn": {
+        "changed": 2,
+        "nan_to_value": 0,
+        "value_to_nan": 0,
+        "max_abs_delta": 0.4900000000000002,
+        "days": [
+          "2026-06-04",
+          "2026-06-05"
+        ],
+        "total_cells": 2016
+      },
+      "rt_prices.mcpc_rrs": {
+        "changed": 1,
+        "nan_to_value": 0,
+        "value_to_nan": 0,
+        "max_abs_delta": 4.370000000000001,
+        "days": [
+          "2026-06-06"
+        ],
+        "total_cells": 2016
+      },
+      "rt_prices.mcpc_ecrs": {
+        "changed": 2,
+        "nan_to_value": 0,
+        "value_to_nan": 0,
+        "max_abs_delta": 0.24,
+        "days": [
+          "2026-06-05",
+          "2026-06-07"
+        ],
+        "total_cells": 2016
+      },
+      "rt_prices.mcpc_nspin": {
+        "changed": 2,
+        "nan_to_value": 0,
+        "value_to_nan": 0,
+        "max_abs_delta": 1.2699999999999998,
+        "days": [
+          "2026-06-01",
+          "2026-06-07"
+        ],
+        "total_cells": 2016
+      }
+    },
+    "characterization": "scattered value-to-value revisions across 5 of 7 days and 6 columns; no NaN filled, no value lost; one LMP cell carries most of the magnitude"
   }
 }

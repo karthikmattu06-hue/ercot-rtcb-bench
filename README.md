@@ -48,6 +48,7 @@ See [`docs/dataset-card.md`](docs/dataset-card.md) for full documentation.
 ## Writing
 
 - [Post #1: What RTC+B Actually Changed — A Visual Walkthrough of the 6-D Action Space](https://karthik204653.substack.com/p/what-rtcb-actually-changed-a-walkthrough) (2026-05-14)
+- [Post #2: The $58k That Wasn't](https://karthik204653.substack.com/p/the-58k-that-wasnt) (2026-08-10) — two measured forecast-error levers, both retired under pre-registered replication (ADR 0014, 0015)
 
 ## Repository structure
 

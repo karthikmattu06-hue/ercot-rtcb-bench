@@ -4,8 +4,17 @@ The raw and processed data files are **not committed to this repository**.
 
 ## Where to get the data
 
-- **v0.1** (Dec 5, 2025 – Mar 31, 2026): Zenodo upload forthcoming (Week 2).
+- **v0.2** (Jan 1 – Jun 9, 2026) — **canonical reproduction target**, published:
+  https://doi.org/10.5281/zenodo.21178739
+- **v0.1** (Dec 5, 2025 – Mar 31, 2026) — historical, published:
+  https://doi.org/10.5281/zenodo.20204994
 - **v1.0** (Dec 5, 2025 – Jun 5, 2026): In preparation.
+
+Concept DOI (always latest): https://doi.org/10.5281/zenodo.20204993
+
+Note: v0.2 is **not** a strict superset of v0.1 — it drops the Dec 2025 span and the
+auxiliary tables (`as_clearing`, `asdc_hourly`, `asdc_params`, `as_plan`). Use v0.1
+for those.
 
 ## Reproducing the data locally
 
